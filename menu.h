@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.h 5.10 2026/02/01 14:36:14 kls Exp $
+ * $Id: menu.h 5.11 2026/02/06 20:34:13 kls Exp $
  */
 
 #ifndef __MENU_H
@@ -216,7 +216,6 @@ private:
   int helpKeys;
   bool delRecMenu;
   const cRecordingFilter *filter;
-  static cString path;
   static cString fileName;
   static cString deletedName;
   static time_t toggleDelRec;

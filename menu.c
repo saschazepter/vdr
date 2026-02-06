@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.c 5.43 2026/02/05 15:55:07 kls Exp $
+ * $Id: menu.c 5.44 2026/02/06 20:34:13 kls Exp $
  */
 
 #include "menu.h"
@@ -3088,7 +3088,6 @@ void cMenuRecordingItem::SetMenuItem(cSkinDisplayMenu *DisplayMenu, int Index, b
 
 // --- cMenuRecordings -------------------------------------------------------
 
-cString cMenuRecordings::path;
 cString cMenuRecordings::fileName;
 cString cMenuRecordings::deletedName;
 time_t cMenuRecordings::toggleDelRec = 0;
@@ -3109,11 +3108,9 @@ cMenuRecordings::cMenuRecordings(const char *Base, int Level, bool OpenSubMenus,
   Set();
   if (Current() < 0)
      SetCurrent(First());
-  else if (OpenSubMenus && (cReplayControl::LastReplayed() || *path || (delRecMenu ? *deletedName : *fileName))) {
-     if (!*path || Level < strcountchr(path, FOLDERDELIMCHAR)) {
-        if (Open(true))
-           return;
-        }
+  else if (OpenSubMenus && (cReplayControl::LastReplayed() || (delRecMenu ? *deletedName : *fileName))) {
+     if (Open(true))
+        return;
      }
   SetHelpKeys();
 }
@@ -3204,11 +3201,7 @@ void cMenuRecordings::Set(bool Refresh)
             else
                delete Item;
             if (LastItem || LastDir) {
-               if (*path) {
-                  if (strcmp(path, Recording->Folder()) == 0)
-                     CurrentItem = LastDir ? LastDir : LastItem;
-                  }
-               else if (CurrentRecording && strcmp(CurrentRecording, Recording->FileName()) == 0)
+               if (CurrentRecording && strcmp(CurrentRecording, Recording->FileName()) == 0)
                   CurrentItem = LastDir ? LastDir : LastItem;
                }
             if (LastDir)
@@ -3251,7 +3244,7 @@ cString cMenuRecordings::DirectoryName(void)
 bool cMenuRecordings::Open(bool OpenSubMenus)
 {
   cMenuRecordingItem *ri = (cMenuRecordingItem *)Get(Current());
-  if (ri && ri->IsDirectory() && (!*path || strcountchr(path, FOLDERDELIMCHAR) > 0)) {
+  if (ri && ri->IsDirectory()) {
      const char *t = ri->Name();
      cString buffer;
      if (base) {
@@ -3554,14 +3547,12 @@ eOSState cMenuRecordings::ProcessKey(eKeys Key)
   else if (state == osUserRecRenamed) {
      // a recording was renamed (within the same folder), so let's refresh the menu
      CloseSubMenu(false); // this is the cMenuRecordingEdit/cMenuPathEdit
-     path = NULL;
      fileName = NULL;
      state = osContinue;
      }
   else if (state == osUserRecMoved) {
      // a recording was moved to a different folder, so let's delete the old item
      CloseSubMenu(false); // this is the cMenuRecordingEdit/cMenuPathEdit
-     path = NULL;
      fileName = NULL;
      cOsdMenu::Del(Current());
      Set(); // the recording might have been moved into a new subfolder of this folder

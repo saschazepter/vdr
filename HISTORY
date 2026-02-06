@@ -10275,3 +10275,7 @@ Video Disk Recorder Revision History
 - Commented out unused parameters in cSdtFilter::Process() (reported by Christoph Haubrich).
 - When a replay ends by reaching the end of the recording, it automatically opens the "Recordings"
   menu at the location of that recording (suggested by Markus Ehrnsperger).
+
+2026-02-06:
+
+- Removed leftover cMenuRecordings::path.
