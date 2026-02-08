@@ -1043,7 +1043,7 @@ msgid "Setup.OSD$Scroll wraps"
 msgstr "Rundum scrollen"
 
 msgid "Setup.OSD$Menu key closes"
-msgstr "Menu-Taste schließt"
+msgstr "Menü-Taste schließt"
 
 msgid "Setup.OSD$Recording directories"
 msgstr "Aufnahmeverzeichnisse"
