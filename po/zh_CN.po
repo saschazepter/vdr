@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-01 15:36+0100\n"
+"POT-Creation-Date: 2026-02-09 21:34+0100\n"
 "PO-Revision-Date: 2013-03-04 14:52+0800\n"
 "Last-Translator: NFVDR <nfvdr@live.com>\n"
 "Language-Team: Chinese (simplified) <nfvdr@live.com>\n"
@@ -1482,6 +1482,9 @@ msgstr "频道排序"
 
 msgid "Setup.Miscellaneous$Show channel names with source"
 msgstr "显示频道名称与源"
+
+msgid "Setup.Miscellaneous$Open Recordings menu at last replayed"
+msgstr ""
 
 msgid "Setup.Miscellaneous$Emergency exit"
 msgstr "突发事件退出"

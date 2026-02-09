@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-01 15:36+0100\n"
+"POT-Creation-Date: 2026-02-09 21:34+0100\n"
 "PO-Revision-Date: 2008-10-16 11:16-0400\n"
 "Last-Translator: Osama Alrawab <alrawab@hotmail.com>\n"
 "Language-Team: Arabic <ar@li.org>\n"
@@ -1484,6 +1484,9 @@ msgstr "Channels wrap"
 
 msgid "Setup.Miscellaneous$Show channel names with source"
 msgstr "Show channel names with source"
+
+msgid "Setup.Miscellaneous$Open Recordings menu at last replayed"
+msgstr ""
 
 msgid "Setup.Miscellaneous$Emergency exit"
 msgstr "خروج طارىء"

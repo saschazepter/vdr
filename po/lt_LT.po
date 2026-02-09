@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-01 15:36+0100\n"
+"POT-Creation-Date: 2026-02-09 21:34+0100\n"
 "PO-Revision-Date: 2015-02-11 14:02+0200\n"
 "Last-Translator: Valdemaras Pipiras <varas@ambernet.lt>\n"
 "Language-Team: Lithuanian <vdr@linuxtv.org>\n"
@@ -1480,6 +1480,9 @@ msgstr "Kanalų pridengimas"
 
 msgid "Setup.Miscellaneous$Show channel names with source"
 msgstr "Kanalo pavadinimuose rodyti šaltinius"
+
+msgid "Setup.Miscellaneous$Open Recordings menu at last replayed"
+msgstr ""
 
 msgid "Setup.Miscellaneous$Emergency exit"
 msgstr "Avarinis išėjimas"

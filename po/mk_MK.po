@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-01 15:36+0100\n"
+"POT-Creation-Date: 2026-02-09 21:34+0100\n"
 "PO-Revision-Date: 2018-03-31 21:47+0100\n"
 "Last-Translator: Dimitar Petrovski <dimeptr@gmail.com>\n"
 "Language-Team: Macedonian <kde-i18n-doc@kde.org>\n"
@@ -1482,6 +1482,9 @@ msgstr "Премотување канали"
 
 msgid "Setup.Miscellaneous$Show channel names with source"
 msgstr "Прикажи имиња на канали со извор"
+
+msgid "Setup.Miscellaneous$Open Recordings menu at last replayed"
+msgstr ""
 
 msgid "Setup.Miscellaneous$Emergency exit"
 msgstr "Итен излез"

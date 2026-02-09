@@ -10283,3 +10283,6 @@ Video Disk Recorder Revision History
 - Opening a folder in the "Recordings" menu now selects the most recently played recording in
   that folder (suggested by Stefan Hofmann).
   APIVERSNUM is now 30012.
+- The new setup option "Miscellaneous/Open Recordings menu at last replayed" can be used to make
+  the "Recordings" key on the remote control open the menu at the last replayed recording (thanks
+  to Stefan Hofmann). See MANUAL for details.

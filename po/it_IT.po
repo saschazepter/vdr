@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-01 15:36+0100\n"
+"POT-Creation-Date: 2026-02-09 21:34+0100\n"
 "PO-Revision-Date: 2025-04-16 19:49+0200\n"
 "Last-Translator: Diego Pierotto <vdr-italian@tiscali.it>\n"
 "Language-Team: Italian <vdr@linuxtv.org>\n"
@@ -1486,6 +1486,9 @@ msgstr "Riavvolgimento canali"
 
 msgid "Setup.Miscellaneous$Show channel names with source"
 msgstr "Mostra nomi canali con la sorgente"
+
+msgid "Setup.Miscellaneous$Open Recordings menu at last replayed"
+msgstr ""
 
 msgid "Setup.Miscellaneous$Emergency exit"
 msgstr "Uscita di emergenza"

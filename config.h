@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: config.h 5.40 2026/02/09 10:08:39 kls Exp $
+ * $Id: config.h 5.41 2026/02/09 22:30:51 kls Exp $
  */
 
 #ifndef __CONFIG_H
@@ -377,6 +377,7 @@ public:
   int InitialVolume;
   int ChannelsWrap;
   int ShowChannelNamesWithSource;
+  int OpenRecMenuAtLastReplayed;
   int EmergencyExit;
   int __EndData__;
   cString InitialChannel;

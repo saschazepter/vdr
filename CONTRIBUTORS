@@ -3418,6 +3418,7 @@ Stefan Hofmann <stefan.hofmann@t-online.de>
  for revising the German translation of "Number keys for characters"
  for suggesting to select the most recently played recording when opening a folder in the
  "Recordings" menu
+ for implementing the setup option "Miscellaneous/Open Recordings menu at last replayed"
 
 Stefan Blochberger <Stefan.Blochberger@gmx.de>
  for suggesting to automatically display the progress display whenever replay of a

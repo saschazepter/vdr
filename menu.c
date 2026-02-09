@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.c 5.45 2026/02/09 10:08:39 kls Exp $
+ * $Id: menu.c 5.46 2026/02/09 22:30:51 kls Exp $
  */
 
 #include "menu.h"
@@ -4459,6 +4459,7 @@ void cMenuSetupMisc::Set(void)
   Add(new cMenuEditIntItem( tr("Setup.Miscellaneous$Volume linearize"),           &data.VolumeLinearize, -20, 20));
   Add(new cMenuEditBoolItem(tr("Setup.Miscellaneous$Channels wrap"),              &data.ChannelsWrap));
   Add(new cMenuEditStraItem(tr("Setup.Miscellaneous$Show channel names with source"), &data.ShowChannelNamesWithSource, 3, showChannelNamesWithSourceTexts));
+  Add(new cMenuEditBoolItem(tr("Setup.Miscellaneous$Open Recordings menu at last replayed"), &data.OpenRecMenuAtLastReplayed));
   Add(new cMenuEditBoolItem(tr("Setup.Miscellaneous$Emergency exit"),             &data.EmergencyExit));
   SetCurrent(Get(current));
   Display();

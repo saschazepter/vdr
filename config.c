@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: config.c 5.3 2026/01/04 10:18:40 kls Exp $
+ * $Id: config.c 5.4 2026/02/09 22:30:51 kls Exp $
  */
 
 #include "config.h"
@@ -499,6 +499,7 @@ cSetup::cSetup(void)
   InitialVolume = -1;
   ChannelsWrap = 0;
   ShowChannelNamesWithSource = 0;
+  OpenRecMenuAtLastReplayed = 0;
   EmergencyExit = 1;
 }
 
@@ -730,6 +731,7 @@ bool cSetup::Parse(const char *Name, const char *Value)
   else if (!strcasecmp(Name, "DeviceBondings"))      DeviceBondings     = Value;
   else if (!strcasecmp(Name, "ChannelsWrap"))        ChannelsWrap       = atoi(Value);
   else if (!strcasecmp(Name, "ShowChannelNamesWithSource")) ShowChannelNamesWithSource = atoi(Value);
+  else if (!strcasecmp(Name, "OpenRecMenuAtLastReplayed")) OpenRecMenuAtLastReplayed = atoi(Value);
   else if (!strcasecmp(Name, "EmergencyExit"))       EmergencyExit      = atoi(Value);
   else if (!strcasecmp(Name, "LastReplayed"))        cReplayControl::SetRecording(Value);
   else
@@ -865,6 +867,7 @@ bool cSetup::Save(void)
   Store("DeviceBondings",     DeviceBondings);
   Store("ChannelsWrap",       ChannelsWrap);
   Store("ShowChannelNamesWithSource", ShowChannelNamesWithSource);
+  Store("OpenRecMenuAtLastReplayed", OpenRecMenuAtLastReplayed);
   Store("EmergencyExit",      EmergencyExit);
   Store("LastReplayed",       cReplayControl::LastReplayed());
 

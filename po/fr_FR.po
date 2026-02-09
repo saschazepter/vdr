@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-01 15:36+0100\n"
+"POT-Creation-Date: 2026-02-09 21:34+0100\n"
 "PO-Revision-Date: 2018-04-14 10:16+0100\n"
 "Last-Translator: Bernard Jaulin <bernard.jaulin@gmail.com>\n"
 "Language-Team: French <vdr@linuxtv.org>\n"
@@ -1491,6 +1491,9 @@ msgstr "Affichage circulaire des chaînes"
 
 msgid "Setup.Miscellaneous$Show channel names with source"
 msgstr "Afficher chaînes avec leur source"
+
+msgid "Setup.Miscellaneous$Open Recordings menu at last replayed"
+msgstr ""
 
 msgid "Setup.Miscellaneous$Emergency exit"
 msgstr "Arrêt d'urgence"

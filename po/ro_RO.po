@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-01 15:36+0100\n"
+"POT-Creation-Date: 2026-02-09 21:34+0100\n"
 "PO-Revision-Date: 2015-02-11 22:26+0100\n"
 "Last-Translator: Lucian Muresan <lucianm@users.sourceforge.net>\n"
 "Language-Team: Romanian <vdr@linuxtv.org>\n"
@@ -1482,6 +1482,9 @@ msgstr "Lista de canale în buclă"
 
 msgid "Setup.Miscellaneous$Show channel names with source"
 msgstr "Arată numele canalelor cu sursa"
+
+msgid "Setup.Miscellaneous$Open Recordings menu at last replayed"
+msgstr ""
 
 msgid "Setup.Miscellaneous$Emergency exit"
 msgstr "Oprire de urgenţă"

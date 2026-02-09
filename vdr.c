@@ -22,7 +22,7 @@
  *
  * The project's page is at https://www.tvdr.de
  *
- * $Id: vdr.c 5.24 2026/01/29 19:47:44 kls Exp $
+ * $Id: vdr.c 5.25 2026/02/09 22:30:51 kls Exp $
  */
 
 #include <getopt.h>
@@ -1269,7 +1269,7 @@ int main(int argc, char *argv[])
                }
                break;
           // Direct main menu functions:
-          #define DirectMainFunction(function)\
+          #define DirectMainFunction(function...)\
             { DELETE_MENU;\
             if (Control)\
                Control->Hide();\
@@ -1278,7 +1278,9 @@ int main(int argc, char *argv[])
           case kSchedule:   DirectMainFunction(osSchedule); break;
           case kChannels:   DirectMainFunction(osChannels); break;
           case kTimers:     DirectMainFunction(osTimers); break;
-          case kRecordings: DirectMainFunction(osRecordings); break;
+          case kRecordings: if (Setup.OpenRecMenuAtLastReplayed)
+                               cMenuRecordings::SetRecording(cReplayControl::LastReplayed());
+                            DirectMainFunction(osRecordings, Setup.OpenRecMenuAtLastReplayed); break;
           case kSetup:      DirectMainFunction(osSetup); break;
           case kCommands:   DirectMainFunction(osCommands); break;
           case kUser0 ... kUser9: cRemote::PutMacro(key); key = kNone; break;

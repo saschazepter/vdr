@@ -1345,6 +1345,18 @@ VDR version 2.6.6 added '/' to this list.
                          option is set to "type), or "ZDF (S19.2E)" (if it is set to
                          "full"), where 'S' stands for "Satellite".
 
+  Open Recordings menu at last replayed = no
+                         If set to 'yes', opening the "Recordings" menu via the
+                         "Recordings" key on the remote control (or a key macro that
+                         uses it) positions the cursor on the the most recently
+                         played recording, opening all intermediate folders as
+                         necessary. By default ('no'), as well as when opening
+                         the "Recordings" menu via the main menu, the top level
+                         folder of the video directory is opened, with the cursor
+                         positioned at the sub folder (if any) containing that
+                         recording. The most recently played recording can then be
+                         reached by repeatedly pressing "Ok".
+
   Emergency exit = yes   If, for some reason, a recording fails because the video
                          data stream is broken, or the CAM doesn't decrypt etc.,
                          VDR automatically exits in order to allow the surrounding

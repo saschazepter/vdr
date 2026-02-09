@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-01 15:36+0100\n"
+"POT-Creation-Date: 2026-02-09 21:34+0100\n"
 "PO-Revision-Date: 2015-02-12 21:58+0100\n"
 "Last-Translator: Magnus Sirviö <sirwio@hotmail.com>\n"
 "Language-Team: Swedish <vdr@linuxtv.org>\n"
@@ -1485,6 +1485,9 @@ msgstr "Cirkulär kanallista"
 
 msgid "Setup.Miscellaneous$Show channel names with source"
 msgstr "Visa kanalnamnen tillsammans med källan"
+
+msgid "Setup.Miscellaneous$Open Recordings menu at last replayed"
+msgstr ""
 
 msgid "Setup.Miscellaneous$Emergency exit"
 msgstr "Oförutsedd avslutning"
