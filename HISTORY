@@ -10276,7 +10276,10 @@ Video Disk Recorder Revision History
 - When a replay ends by reaching the end of the recording, it automatically opens the "Recordings"
   menu at the location of that recording (suggested by Markus Ehrnsperger).
 
-2026-02-08:
+2026-02-09:
 
 - Removed leftover cMenuRecordings::path.
 - Fixed a typo in the German OSD texts (thanks to Stefan Hofmann).
+- Opening a folder in the "Recordings" menu now selects the most recently played recording in
+  that folder (suggested by Stefan Hofmann).
+  APIVERSNUM is now 30012.

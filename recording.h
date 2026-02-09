@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: recording.h 5.21 2026/02/03 11:40:56 kls Exp $
+ * $Id: recording.h 5.22 2026/02/09 10:08:39 kls Exp $
  */
 
 #ifndef __RECORDING_H
@@ -52,12 +52,17 @@ void AssertFreeDiskSpace(int Priority = 0, bool Force = false);
 class cResumeFile {
 private:
   char *fileName;
+  time_t fileTime;
+  int index;
   bool isPesRecording;
 public:
   cResumeFile(const char *FileName, bool IsPesRecording);
   ~cResumeFile();
+  time_t FileTime(void);
+  int Index(void);
   int Read(void);
   bool Save(int Index);
+  void Reset(void);
   void Delete(void);
   };
 
@@ -122,7 +127,7 @@ class cRecording : public cListObject {
   friend class cRecordings;
 private:
   int id;
-  mutable int resume;
+  mutable cResumeFile *resume;
   mutable char *titleBuffer;
   mutable char *sortBufferName;
   mutable char *sortBufferTime;
@@ -175,6 +180,7 @@ public:
   const char *PrefixFileName(char Prefix);
   int HierarchyLevels(void) const;
   void ResetResume(void) const;
+  void DeleteResume(void) const;
   double FramesPerSecond(void) const { return info->FramesPerSecond(); }
   int NumFrames(void) const;
        ///< Returns the number of frames in this recording.
@@ -194,6 +200,9 @@ public:
   int GetResume(void) const;
        ///< Returns the index of the frame where replay of this recording shall
        ///< be resumed, or -1 in case of an error.
+  time_t GetLastReplayTime(void) const;
+       ///< Returns the time this recording was last replayed (which is actually the
+       ///< timestamp of the resume file), or 0 if no resume file exists.
   bool IsNew(void) const { return GetResume() <= 0; }
   bool IsEdited(void) const;
   bool IsPesRecording(void) const { return isPesRecording; }

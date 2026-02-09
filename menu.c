@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.c 5.44 2026/02/06 20:34:13 kls Exp $
+ * $Id: menu.c 5.45 2026/02/09 10:08:39 kls Exp $
  */
 
 #include "menu.h"
@@ -3170,8 +3170,8 @@ void cMenuRecordings::Set(bool Refresh)
      if (!CurrentRecording) {
         if (delRecMenu)
            CurrentRecording = *deletedName;
-        else
-           CurrentRecording = *fileName ? *fileName : cReplayControl::LastReplayed();
+        else if (*fileName && strstr(fileName, DirectoryName()))
+           CurrentRecording = *fileName;
         }
      int current = Current();
      Clear();
@@ -3179,6 +3179,7 @@ void cMenuRecordings::Set(bool Refresh)
      Recordings->Sort();
      cMenuRecordingItem *CurrentItem = NULL;
      cMenuRecordingItem *LastItem = NULL;
+     time_t LastReplayTime = 0;
      for (const cRecording *Recording = Recordings->First(); Recording; Recording = Recordings->Next(Recording)) {
          if ((!filter || filter->Filter(Recording)) && (!base || (strstr(Recording->Name(), base) == Recording->Name() && Recording->Name()[strlen(base)] == FOLDERDELIMCHAR))) {
             cMenuRecordingItem *Item = new cMenuRecordingItem(Recording, level);
@@ -3201,8 +3202,17 @@ void cMenuRecordings::Set(bool Refresh)
             else
                delete Item;
             if (LastItem || LastDir) {
-               if (CurrentRecording && strcmp(CurrentRecording, Recording->FileName()) == 0)
-                  CurrentItem = LastDir ? LastDir : LastItem;
+               if (CurrentRecording) {
+                  if (strcmp(CurrentRecording, Recording->FileName()) == 0)
+                     CurrentItem = LastDir ? LastDir : LastItem;
+                  }
+               else if (!delRecMenu) {
+                  time_t t = Recording->GetLastReplayTime();
+                  if (t > LastReplayTime) {
+                     LastReplayTime = t;
+                     CurrentItem = LastDir ? LastDir : LastItem;
+                     }
+                  }
                }
             if (LastDir)
                LastDir->IncrementCounter(Recording->IsNew());
@@ -3232,13 +3242,13 @@ void cMenuRecordings::SetRecording(const char *FileName)
 
 cString cMenuRecordings::DirectoryName(void)
 {
-  cString d(cVideoDirectory::Name());
   if (base) {
      char *s = ExchangeChars(strdup(base), true);
-     d = AddDirectory(d, s);
+     cString d = cString::sprintf("%s/%s/", cVideoDirectory::Name(), s);
      free(s);
+     return d;
      }
-  return d;
+  return cVideoDirectory::Name();
 }
 
 bool cMenuRecordings::Open(bool OpenSubMenus)
@@ -3291,8 +3301,7 @@ eOSState cMenuRecordings::Rewind(void)
   cMenuRecordingItem *ri = (cMenuRecordingItem *)Get(Current());
   if (ri && !ri->IsDirectory()) {
      cDevice::PrimaryDevice()->StopReplay(); // must do this first to be able to rewind the currently replayed recording
-     cResumeFile ResumeFile(ri->Recording()->FileName(), ri->Recording()->IsPesRecording());
-     ResumeFile.Delete();
+     ri->Recording()->DeleteResume();
      return Play();
      }
   return osContinue;

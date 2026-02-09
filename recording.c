@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: recording.c 5.52 2026/02/03 15:25:54 kls Exp $
+ * $Id: recording.c 5.53 2026/02/09 10:08:39 kls Exp $
  */
 
 #include "recording.h"
@@ -239,8 +239,12 @@ void AssertFreeDiskSpace(int Priority, bool Force)
 
 // --- cResumeFile -----------------------------------------------------------
 
+#define RESUME_NOT_INITIALIZED (-2)
+
 cResumeFile::cResumeFile(const char *FileName, bool IsPesRecording)
 {
+  fileTime = 0;
+  index = RESUME_NOT_INITIALIZED;
   isPesRecording = IsPesRecording;
   const char *Suffix = isPesRecording ? RESUMEFILESUFFIX ".vdr" : RESUMEFILESUFFIX;
   fileName = MALLOC(char, strlen(FileName) + strlen(Suffix) + 1);
@@ -257,12 +261,27 @@ cResumeFile::~cResumeFile()
   free(fileName);
 }
 
+time_t cResumeFile::FileTime(void)
+{
+  if (index == RESUME_NOT_INITIALIZED) // checking index is OK, Read() sets index AND fileTime!
+     Read();
+  return fileTime;
+}
+
+int cResumeFile::Index(void)
+{
+  if (index == RESUME_NOT_INITIALIZED)
+     Read();
+  return index;
+}
+
 int cResumeFile::Read(void)
 {
   int resume = -1;
   if (fileName) {
      struct stat st;
      if (stat(fileName, &st) == 0) {
+        fileTime = st.st_mtime;
         if ((st.st_mode & S_IWUSR) == 0) // no write access, assume no resume
            return -1;
         }
@@ -299,6 +318,7 @@ int cResumeFile::Read(void)
            LOG_ERROR_STR(fileName);
         }
      }
+  index = resume;
   return resume;
 }
 
@@ -335,9 +355,16 @@ bool cResumeFile::Save(int Index)
         Recordings->ResetResume(fileName);
         StateKey.Remove();
         }
+     fileTime = time(NULL);
+     index = Index;
      return true;
      }
   return false;
+}
+
+void cResumeFile::Reset(void)
+{
+  index = RESUME_NOT_INITIALIZED;
 }
 
 void cResumeFile::Delete(void)
@@ -680,8 +707,6 @@ cString cRecordingInfo::FrameParams(void) const
 
 // --- cRecording ------------------------------------------------------------
 
-#define RESUME_NOT_INITIALIZED (-2)
-
 struct tCharExchange { char a; char b; };
 tCharExchange CharExchange[] = {
   { FOLDERDELIMCHAR,  '/' },
@@ -878,7 +903,7 @@ char *LimitNameLengths(char *s, int PathMax, int NameMax)
 cRecording::cRecording(cTimer *Timer, const cEvent *Event)
 {
   id = 0;
-  resume = RESUME_NOT_INITIALIZED;
+  resume = NULL;
   titleBuffer = NULL;
   sortBufferName = sortBufferTime = NULL;
   fileName = NULL;
@@ -931,7 +956,7 @@ cRecording::cRecording(cTimer *Timer, const cEvent *Event)
 cRecording::cRecording(const char *FileName)
 {
   id = 0;
-  resume = RESUME_NOT_INITIALIZED;
+  resume = NULL;
   fileSizeMB = -1; // unknown
   channel = -1;
   instanceId = -1;
@@ -971,6 +996,7 @@ cRecording::cRecording(const char *FileName)
         }
      else
         return;
+     resume = new cResumeFile(fileName, isPesRecording);
      GetResume();
      // read an optional info file:
      cString InfoFileName = cString::sprintf("%s%s", fileName, isPesRecording ? INFOFILESUFFIX ".vdr" : INFOFILESUFFIX);
@@ -1058,6 +1084,7 @@ cRecording::~cRecording()
   free(sortBufferTime);
   free(fileName);
   free(name);
+  delete resume;
   delete info;
 }
 
@@ -1128,11 +1155,12 @@ void cRecording::SetId(int Id)
 
 int cRecording::GetResume(void) const
 {
-  if (resume == RESUME_NOT_INITIALIZED) {
-     cResumeFile ResumeFile(FileName(), isPesRecording);
-     resume = ResumeFile.Read();
-     }
-  return resume;
+  return resume ? resume->Index() : -1;
+}
+
+time_t cRecording::GetLastReplayTime(void) const
+{
+  return resume ? resume->FileTime() : 0;
 }
 
 bool cRecording::RetentionExpired(void) const
@@ -1479,7 +1507,14 @@ static bool StillRecording(const char *Directory)
 
 void cRecording::ResetResume(void) const
 {
-  resume = RESUME_NOT_INITIALIZED;
+  if (resume)
+     resume->Reset();
+}
+
+void cRecording::DeleteResume(void) const
+{
+  if (resume)
+     resume->Delete();
 }
 
 int cRecording::NumFrames(void) const
