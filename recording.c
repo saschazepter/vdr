@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: recording.c 5.53 2026/02/09 10:08:39 kls Exp $
+ * $Id: recording.c 5.54 2026/02/13 15:36:57 kls Exp $
  */
 
 #include "recording.h"
@@ -243,10 +243,22 @@ void AssertFreeDiskSpace(int Priority, bool Force)
 
 cResumeFile::cResumeFile(const char *FileName, bool IsPesRecording)
 {
+  fileName = NULL;
   fileTime = 0;
   index = RESUME_NOT_INITIALIZED;
   isPesRecording = IsPesRecording;
+  SetFileName(FileName);
+}
+
+cResumeFile::~cResumeFile()
+{
+  free(fileName);
+}
+
+void cResumeFile::SetFileName(const char *FileName)
+{
   const char *Suffix = isPesRecording ? RESUMEFILESUFFIX ".vdr" : RESUMEFILESUFFIX;
+  free(fileName);
   fileName = MALLOC(char, strlen(FileName) + strlen(Suffix) + 1);
   if (fileName) {
      strcpy(fileName, FileName);
@@ -254,11 +266,7 @@ cResumeFile::cResumeFile(const char *FileName, bool IsPesRecording)
      }
   else
      esyslog("ERROR: can't allocate memory for resume file name");
-}
-
-cResumeFile::~cResumeFile()
-{
-  free(fileName);
+  Reset(); // for safety
 }
 
 time_t cResumeFile::FileTime(void)
@@ -1379,6 +1387,7 @@ bool cRecording::ChangePriorityLifetime(int NewPriority, int NewLifetime)
         if (!cVideoDirectory::RenameVideoFile(OldFileName, NewFileName))
            return false;
         info->SetFileName(NewFileName);
+        resume->SetFileName(NewFileName);
         }
      else {
         if (!WriteInfo())
@@ -1410,6 +1419,7 @@ bool cRecording::ChangeName(const char *NewName)
         return false;
         }
      info->SetFileName(NewFileName);
+     resume->SetFileName(NewFileName);
      isOnVideoDirectoryFileSystem = -1; // it might have been moved to a different file system
      ClearSortName();
      }

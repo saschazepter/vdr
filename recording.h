@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: recording.h 5.22 2026/02/09 10:08:39 kls Exp $
+ * $Id: recording.h 5.23 2026/02/13 15:36:57 kls Exp $
  */
 
 #ifndef __RECORDING_H
@@ -58,6 +58,7 @@ private:
 public:
   cResumeFile(const char *FileName, bool IsPesRecording);
   ~cResumeFile();
+  void SetFileName(const char *FileName);
   time_t FileTime(void);
   int Index(void);
   int Read(void);
