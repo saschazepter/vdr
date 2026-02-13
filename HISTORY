@@ -10288,3 +10288,5 @@ Video Disk Recorder Revision History
   to Stefan Hofmann). See MANUAL for details.
 - Fixed handling the resume data in case the recording is renamed or moved (reported by Stefan
   Hofmann).
+- Fixed an invalid lock sequence when deleting a recording that is currently being edited (thanks
+  Matthias Senzel).

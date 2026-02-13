@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.c 5.46 2026/02/09 22:30:51 kls Exp $
+ * $Id: menu.c 5.47 2026/02/13 15:50:58 kls Exp $
  */
 
 #include "menu.h"
@@ -3371,17 +3371,16 @@ eOSState cMenuRecordings::Delete(void)
         cString FileName;
         {
           LOCK_RECORDINGS_READ;
-          if (const cRecording *Recording = Recordings->GetByName(ri->Recording()->FileName())) {
+          if (const cRecording *Recording = Recordings->GetByName(ri->Recording()->FileName()))
              FileName = Recording->FileName();
-             if (RecordingsHandler.GetUsage(FileName)) {
-                if (!Interface->Confirm(tr("Recording is being edited - really delete?")))
-                   return osContinue;
-                SetNeedsFastResponse(true); // makes sure the edited version is removed from the menu ASAP
-                }
-             }
           else
              return osContinue; // recording has already been deleted
         }
+        if (RecordingsHandler.GetUsage(FileName)) {
+           if (!Interface->Confirm(tr("Recording is being edited - really delete?")))
+              return osContinue;
+           SetNeedsFastResponse(true); // makes sure the edited version is removed from the menu ASAP
+           }
         RecordingsHandler.Del(FileName); // must do this w/o holding a lock, because the cleanup section in cDirCopier::Action() might request one!
         if (cReplayControl::NowReplaying() && strcmp(cReplayControl::NowReplaying(), FileName) == 0)
            cControl::Shutdown();
