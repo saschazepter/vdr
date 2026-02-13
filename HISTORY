@@ -10290,3 +10290,5 @@ Video Disk Recorder Revision History
   Hofmann).
 - Fixed an invalid lock sequence when deleting a recording that is currently being edited (thanks
   Matthias Senzel).
+- Fixed handling calls to cRecordings::DelByName() with extensions other than '.rec' (thanks to
+  Markus Ehrnsperger).

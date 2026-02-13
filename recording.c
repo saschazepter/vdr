@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: recording.c 5.54 2026/02/13 15:36:57 kls Exp $
+ * $Id: recording.c 5.55 2026/02/13 15:59:28 kls Exp $
  */
 
 #include "recording.h"
@@ -1806,7 +1806,7 @@ void cRecordings::DelByName(const char *FileName)
      }
   char *DelRecFileName = strdup(FileName);
   if (char *ext = strrchr(DelRecFileName, '.')) {
-     if (strcmp(ext, DELEXT)) {
+     if (strcmp(ext, RECEXT)) {
         esyslog("ERROR: cRecordings::DelByName() called with '%s', using '.rec' instead", DelRecFileName);
         strncpy(ext, RECEXT, strlen(ext));
         }
