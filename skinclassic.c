@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: skinclassic.c 5.5 2025/03/02 11:03:35 kls Exp $
+ * $Id: skinclassic.c 5.6 2026/02/16 14:58:07 kls Exp $
  */
 
 #include "skinclassic.h"
@@ -557,7 +557,10 @@ void cSkinClassicDisplayReplay::SetTotal(const char *Total)
 
 void cSkinClassicDisplayReplay::SetJump(const char *Jump)
 {
-  osd->DrawText(x0 + (x1 - x0) / 4, y2, Jump, Theme.Color(clrReplayModeJump), Theme.Color(clrBackground), cFont::GetFont(fontOsd), (x1 - x0) / 2, 0, taCenter);
+  if (Jump)
+     osd->DrawText(x0 + (x1 - x0) / 4, y2, Jump, Theme.Color(clrReplayModeJump), Theme.Color(clrBackground), cFont::GetFont(fontOsd), (x1 - x0) / 2, 0, taCenter);
+  else
+     osd->DrawRectangle(x0 + (x1 - x0) / 4, y2, x1 - (x1 - x0) / 4, y3, Theme.Color(clrBackground));
 }
 
 void cSkinClassicDisplayReplay::SetMessage(eMessageType Type, const char *Text)

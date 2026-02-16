@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: skinsttng.c 5.5 2025/03/02 11:03:35 kls Exp $
+ * $Id: skinsttng.c 5.6 2026/02/16 14:58:07 kls Exp $
  */
 
 // "Star Trek: The Next Generation"(R) is a registered trademark of Paramount Pictures
@@ -927,7 +927,10 @@ void cSkinSTTNGDisplayReplay::SetTotal(const char *Total)
 
 void cSkinSTTNGDisplayReplay::SetJump(const char *Jump)
 {
-  osd->DrawText(x0 + (x4 - x0) / 4, y6, Jump, Theme.Color(clrReplayJump), frameColor, cFont::GetFont(fontSml), (x4 - x3) / 2, 0, taCenter);
+  if (Jump)
+     osd->DrawText(x0 + (x4 - x0) / 4, y6, Jump, Theme.Color(clrReplayJump), frameColor, cFont::GetFont(fontSml), (x4 - x3) / 2, 0, taCenter);
+  else
+     osd->DrawRectangle(x0 + (x4 - x0) / 4, y6, x4 - (x4 - x0) / 4, y7, frameColor);
 }
 
 void cSkinSTTNGDisplayReplay::SetMessage(eMessageType Type, const char *Text)

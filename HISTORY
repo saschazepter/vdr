@@ -10296,3 +10296,4 @@ Video Disk Recorder Revision History
 - The resume file of a recording is now initialized when starting replay, to make sure it will be
   treated as "last replayed" (suggested by Stefan Hofmann).
 - Fixed the description of cSkinDisplayReplay::SetJump() (reported by Christoph Haubrich).
+- Fixed removing the Jump prompt in the replay display of the default skins.
