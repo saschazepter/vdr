@@ -365,6 +365,7 @@ Version 2.7.9
             and then press "Left" or "Right" to jump relative to the current
             position, "Up" to jump to an absolute position, and "Down" to
             jump and pause at an absolute position.
+            The time is entered as hh:mm.
   - Green
     Yellow  Skips about 60 seconds back or forward.
             Pressing and holding down the key performs the function until

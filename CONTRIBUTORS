@@ -2482,6 +2482,7 @@ Christoph Haubrich <christoph1.haubrich@arcor.de>
  for reporting a problem with deleting existing destinations in cRecordingsHandlerEntry
  for reporting unused parameters in cSdtFilter::Process()
  for reporting a bug in estimating missing frames at the end of a recording
+ for reporting a bug in the description of cSkinDisplayReplay::SetJump()
 
 Pekka Mauno <pekka.mauno@iki.fi>
  for fixing cSchedule::GetFollowingEvent() in case there is currently no present

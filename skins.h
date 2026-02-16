@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: skins.h 5.8 2025/03/03 11:05:23 kls Exp $
+ * $Id: skins.h 5.9 2026/02/16 11:13:34 kls Exp $
  */
 
 #ifndef __SKINS_H
@@ -360,7 +360,7 @@ public:
        ///< string in the form "h:mm:ss".
   virtual void SetJump(const char *Jump) = 0;
        ///< Sets the prompt that allows the user to enter a jump point.
-       ///< Jump is a string of the form "Jump: mm:ss". The actual implementation
+       ///< Jump is a string of the form "Jump: hh:mm". The actual implementation
        ///< needs to be able to handle variations in the length of this
        ///< string, which will occur when the user enters an actual value.
        ///< If Jump is NULL, the jump prompt shall be removed from the display.
