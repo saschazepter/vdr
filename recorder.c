@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: recorder.c 5.13 2025/12/29 14:14:05 kls Exp $
+ * $Id: recorder.c 5.14 2026/02/16 10:33:00 kls Exp $
  */
 
 #include "recorder.h"
@@ -15,7 +15,6 @@
 // The maximum time we wait before assuming that a recorded video data stream
 // is broken:
 #define MAXBROKENTIMEOUT 30000 // milliseconds
-#define LEFTOVERTIMEOUT   2000 // milliseconds
 
 #define MINFREEDISKSPACE    (512) // MB
 #define DISKCHECKINTERVAL   100 // seconds
@@ -334,9 +333,11 @@ void cRecorder::Action(void)
         }
   // Estimate the number of missing frames in case the data stream was broken, but the timer
   // didn't reach the timeout, yet:
-  int dt = t.Elapsed();
-  if (dt > LEFTOVERTIMEOUT)
-     tmpErrors += int(round(frameDetector->FramesPerSecond() * dt / 1000));
+  if (working) {
+     int dt = t.Elapsed();
+     if (dt > 0)
+        tmpErrors += int(round(frameDetector->FramesPerSecond() * dt / 1000));
+     }
   if (pendNumber > 0) {
      bool PreviousErrors = false;
      errors = frameDetector->Errors(&PreviousErrors);

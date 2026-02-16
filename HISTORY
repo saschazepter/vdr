@@ -10276,7 +10276,7 @@ Video Disk Recorder Revision History
 - When a replay ends by reaching the end of the recording, it automatically opens the "Recordings"
   menu at the location of that recording (suggested by Markus Ehrnsperger).
 
-2026-02-13:
+2026-02-16:
 
 - Removed leftover cMenuRecordings::path.
 - Fixed a typo in the German OSD texts (thanks to Stefan Hofmann).
@@ -10292,3 +10292,4 @@ Video Disk Recorder Revision History
   Matthias Senzel).
 - Fixed handling calls to cRecordings::DelByName() with extensions other than '.rec' (thanks to
   Markus Ehrnsperger).
+- Fixed estimating missing frames at the end of a recording (reported by Christoph Haubrich).
