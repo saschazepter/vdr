@@ -10293,3 +10293,5 @@ Video Disk Recorder Revision History
 - Fixed handling calls to cRecordings::DelByName() with extensions other than '.rec' (thanks to
   Markus Ehrnsperger).
 - Fixed estimating missing frames at the end of a recording (reported by Christoph Haubrich).
+- The resume file of a recording is now initialized when starting replay, to make sure it will be
+  treated as "last replayed" (suggested by Stefan Hofmann).

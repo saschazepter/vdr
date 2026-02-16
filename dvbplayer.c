@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: dvbplayer.c 5.13 2025/12/31 14:55:38 kls Exp $
+ * $Id: dvbplayer.c 5.14 2026/02/16 11:03:12 kls Exp $
  */
 
 #include "dvbplayer.h"
@@ -406,11 +406,15 @@ int cDvbPlayer::Resume(void)
 {
   if (index) {
      int Index = index->GetResume();
-     if (Index >= 0) {
+     if (Index < 0)
+        index->StoreResume(0); // resume file doesn't exist, so create it to have the recording marked as "last replayed"
+     else {
         uint16_t FileNumber;
         off_t FileOffset;
-        if (index->Get(Index, &FileNumber, &FileOffset) && NextFile(FileNumber, FileOffset))
+        if (index->Get(Index, &FileNumber, &FileOffset) && NextFile(FileNumber, FileOffset)) {
+           index->StoreResume(Index); // to have the recording marked as "last replayed"
            return Index;
+           }
         }
      }
   return -1;
