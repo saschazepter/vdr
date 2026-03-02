@@ -3702,6 +3702,7 @@ Stefan Herdler <herdler@gmx.de>
  for modifying handling channel names with source to make it thread safe
  for fixing setting T2 system ID from NIT
  for reporting a problem in deleting recordings
+ for making the Watchdog call _exit() if exit() fails
 
 Tobias Faust <tobias.faust@gmx.de>
  for the original "jumpingseconds" patch

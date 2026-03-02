@@ -22,7 +22,7 @@
  *
  * The project's page is at https://www.tvdr.de
  *
- * $Id: vdr.c 5.25 2026/02/09 22:30:51 kls Exp $
+ * $Id: vdr.c 5.26 2026/03/02 11:23:52 kls Exp $
  */
 
 #include <getopt.h>
@@ -184,15 +184,28 @@ static void SignalHandler(int signum)
   signal(signum, SignalHandler);
 }
 
+#define EXITWATCHDOG 40 // seconds
+
 static void Watchdog(int signum)
 {
   // Something terrible must have happened that prevented the 'alarm()' from
   // being called in time, so let's get out of here:
-  esyslog("PANIC: watchdog timer expired - exiting!");
+  static volatile sig_atomic_t PanicLevel = 0;
+  switch (PanicLevel++) {
+    case 0:  signal(SIGALRM, Watchdog);
+             alarm(EXITWATCHDOG);
+             esyslog("PANIC: watchdog timer expired - exit()!");
 #ifdef SDNOTIFY
-  sd_notify(0, "STOPPING=1\nSTATUS=PANIC");
+             sd_notify(0, "STOPPING=1\nSTATUS=PANIC");
 #endif
-  exit(1);
+             exit(1); // let's try this nicely
+             break;
+    case 1:  signal(SIGALRM, Watchdog);
+             alarm(EXITWATCHDOG / 4);
+             esyslog("PANIC: watchdog timer expired - _exit()!");
+             // fall through
+    default: _exit(1); // no more mister nice guy
+    }
 }
 
 int main(int argc, char *argv[])

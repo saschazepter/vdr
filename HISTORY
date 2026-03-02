@@ -10276,7 +10276,7 @@ Video Disk Recorder Revision History
 - When a replay ends by reaching the end of the recording, it automatically opens the "Recordings"
   menu at the location of that recording (suggested by Markus Ehrnsperger).
 
-2026-02-23:
+2026-03-02:
 
 - Removed leftover cMenuRecordings::path.
 - Fixed a typo in the German OSD texts (thanks to Stefan Hofmann).
@@ -10298,3 +10298,4 @@ Video Disk Recorder Revision History
 - Fixed the description of cSkinDisplayReplay::SetJump() (reported by Christoph Haubrich).
 - Fixed removing the Jump prompt in the replay display of the default skins.
 - Increased MAXFRAMESIZE to 3MB (reported by Christoph Haubrich).
+- Now calling _exit() if exit() fails in the Watchdog (thanks to Stefan Herdler).
