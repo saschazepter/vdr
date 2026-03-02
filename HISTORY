@@ -10299,3 +10299,5 @@ Video Disk Recorder Revision History
 - Fixed removing the Jump prompt in the replay display of the default skins.
 - Increased MAXFRAMESIZE to 3MB (reported by Christoph Haubrich).
 - Now calling _exit() if exit() fails in the Watchdog (thanks to Stefan Herdler).
+- Revised the fix in handling kPause, kPlayPause and kRecord in case they are pressed during
+  replay while a menu is open (thanks to Johann Friedrichs).

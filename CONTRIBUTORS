@@ -2987,6 +2987,8 @@ Johann Friedrichs <johann.friedrichs@web.de>
  for adding a missing '-D' to the 'plugins' target of the Makefile
  for adding code for the 'qks' audio track
  for reporting a possible lockup in cCondWait::SleepMs()
+ for revising the fix in handling kPause, kPlayPause and kRecord in case they are pressed
+ during replay while a menu is open
 
 Timo Helkio <timolavi@mbnet.fi>
  for reporting a hangup when replaying a TS recording with subtitles activated
