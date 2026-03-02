@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: device.h 5.8 2025/03/28 22:49:17 kls Exp $
+ * $Id: device.h 5.9 2026/03/02 14:03:51 kls Exp $
  */
 
 #ifndef __DEVICE_H
@@ -26,7 +26,7 @@
 #include "thread.h"
 #include "tools.h"
 
-#define MAXDEVICES         16 // the maximum number of devices in the system
+#define MAXDEVICES         32 // the maximum number of devices in the system
 #define MAXPIDHANDLES      64 // the maximum number of different PIDs per device
 #define MAXRECEIVERS       16 // the maximum number of receivers per device
 #define MAXVOLUME         255

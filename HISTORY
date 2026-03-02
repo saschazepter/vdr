@@ -10301,3 +10301,4 @@ Video Disk Recorder Revision History
 - Now calling _exit() if exit() fails in the Watchdog (thanks to Stefan Herdler).
 - Revised the fix in handling kPause, kPlayPause and kRecord in case they are pressed during
   replay while a menu is open (thanks to Johann Friedrichs).
+- Increased the maximum number of devices to 32.

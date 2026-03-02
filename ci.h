@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: ci.h 5.1 2025/03/02 11:03:35 kls Exp $
+ * $Id: ci.h 5.2 2026/03/02 14:03:51 kls Exp $
  */
 
 #ifndef __CI_H
@@ -17,7 +17,7 @@
 #include "thread.h"
 #include "tools.h"
 
-#define MAX_CAM_SLOTS_PER_ADAPTER    16 // maximum possible value is 255 (same value as MAXDEVICES!)
+#define MAX_CAM_SLOTS_PER_ADAPTER    32 // maximum possible value is 255 (same value as MAXDEVICES!)
 #define MAX_CONNECTIONS_PER_CAM_SLOT  8 // maximum possible value is 254
 #define CAM_READ_TIMEOUT  50 // ms
 
