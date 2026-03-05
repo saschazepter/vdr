@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: osdbase.c 5.10 2025/06/18 20:22:10 kls Exp $
+ * $Id: osdbase.c 5.11 2026/03/05 19:41:55 kls Exp $
  */
 
 #include "osdbase.h"
@@ -368,6 +368,14 @@ void cOsdMenu::Clear(void)
   first = 0;
   current = marked = -1;
   cList<cOsdItem>::Clear();
+}
+
+int cOsdMenu::VisibleItem(int Idx)
+{
+  int i = Idx - first;
+  if (i >= 0 && i < displayMenuItems)
+     return i;
+  return -1;
 }
 
 bool cOsdMenu::SelectableItem(int idx)

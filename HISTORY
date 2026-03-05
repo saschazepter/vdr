@@ -10276,7 +10276,7 @@ Video Disk Recorder Revision History
 - When a replay ends by reaching the end of the recording, it automatically opens the "Recordings"
   menu at the location of that recording (suggested by Markus Ehrnsperger).
 
-2026-03-02:
+2026-03-05:
 
 - Removed leftover cMenuRecordings::path.
 - Fixed a typo in the German OSD texts (thanks to Stefan Hofmann).
@@ -10302,3 +10302,5 @@ Video Disk Recorder Revision History
 - Revised the fix in handling kPause, kPlayPause and kRecord in case they are pressed during
   replay while a menu is open (thanks to Johann Friedrichs).
 - Increased the maximum number of devices to 32.
+- Now automatically updating items in the Recordings menu for ongoing recordings (suggested by
+  Stefan Hofmann).

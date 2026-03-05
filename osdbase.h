@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: osdbase.h 5.4 2026/01/10 20:26:08 kls Exp $
+ * $Id: osdbase.h 5.5 2026/03/05 19:41:55 kls Exp $
  */
 
 #ifndef __OSDBASE_H
@@ -117,6 +117,7 @@ protected:
   void SetHasHotkeys(bool HasHotkeys = true);
   virtual void Clear(void);
   const char *Title(void) { return title; }
+  int VisibleItem(int Idx); ///< Returns the index in the menu if the item is currently visible, -1 otherwise.
   bool SelectableItem(int idx);
   void SetCurrent(cOsdItem *Item);
   void RefreshCurrent(void);

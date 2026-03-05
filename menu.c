@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.c 5.47 2026/02/13 15:50:58 kls Exp $
+ * $Id: menu.c 5.48 2026/03/05 19:41:55 kls Exp $
  */
 
 #include "menu.h"
@@ -3038,15 +3038,18 @@ private:
   int level;
   char *name;
   int totalEntries, newEntries;
+  int usage;
 public:
   cMenuRecordingItem(const cRecording *Recording, int Level);
   ~cMenuRecordingItem();
   void IncrementCounter(bool New);
   const char *Name(void) const { return name; }
   int Level(void) const { return level; }
+  int Usage(void) { return usage; }
   const cRecording *Recording(void) const { return recording; }
   bool IsDirectory(void) const { return name != NULL; }
   void SetRecording(const cRecording *Recording) { recording = Recording; }
+  void Update(cSkinDisplayMenu *DisplayMenu, int Index, bool Current);
   virtual void SetMenuItem(cSkinDisplayMenu *DisplayMenu, int Index, bool Current, bool Selectable) override;
   };
 
@@ -3056,12 +3059,13 @@ cMenuRecordingItem::cMenuRecordingItem(const cRecording *Recording, int Level)
   level = Level;
   name = NULL;
   totalEntries = newEntries = 0;
+  usage = ruNone;
   SetText(Recording->Title('\t', true, Level));
   if (*Text() == '\t') // this is a folder
      name = strdup(Text() + 2); // 'Text() + 2' to skip the two '\t'
   else { // this is an actual recording
-     int Usage = Recording->IsInUse();
-     if ((Usage & ruDst) != 0 && (Usage & (ruMove | ruCopy)) != 0)
+     usage = Recording->IsInUse();
+     if ((usage & ruDst) != 0 && (usage & (ruMove | ruCopy)) != 0)
         SetSelectable(false);
      }
 }
@@ -3077,6 +3081,12 @@ void cMenuRecordingItem::IncrementCounter(bool New)
   if (New)
      newEntries++;
   SetText(cString::sprintf("%d\t\t%d\t%s", totalEntries, newEntries, name));
+}
+
+void cMenuRecordingItem::Update(cSkinDisplayMenu *DisplayMenu, int Index, bool Current)
+{
+  SetText(recording->Title('\t', true, level));
+  SetMenuItem(DisplayMenu, Index, Current, Selectable());
 }
 
 void cMenuRecordingItem::SetMenuItem(cSkinDisplayMenu *DisplayMenu, int Index, bool Current, bool Selectable)
@@ -3102,6 +3112,7 @@ cMenuRecordings::cMenuRecordings(const char *Base, int Level, bool OpenSubMenus,
   filter = Filter;
   helpKeys = -1;
   delRecMenu = DelRecMenu;
+  autoRefresh = false;
   if (Level == 0 && time(NULL) - toggleDelRec > 2)
      toggleDelRec = 0;
   Display(); // this keeps the higher level menus from showing up briefly when pressing 'Back' during replay
@@ -3173,6 +3184,7 @@ void cMenuRecordings::Set(bool Refresh)
         else if (*fileName && strstr(fileName, DirectoryName()))
            CurrentRecording = *fileName;
         }
+     autoRefresh = false;
      int current = Current();
      Clear();
      GetRecordingsSortMode(DirectoryName());
@@ -3194,6 +3206,7 @@ void cMenuRecordings::Set(bool Refresh)
                    }
                }
             if (*Item->Text() && !LastDir) {
+               autoRefresh |= Item->Usage();
                Add(Item);
                LastItem = Item;
                if (Item->IsDirectory())
@@ -3227,6 +3240,17 @@ void cMenuRecordings::Set(bool Refresh)
      SetHelpKeys();
      if (Refresh)
         Display();
+     }
+  else if (autoRefresh) {
+     int current = Current();
+     for (cOsdItem *Item = First(); Item; Item = Next(Item)) {
+         int Index = VisibleItem(Item->Index());
+         if (Index >= 0) {
+            cMenuRecordingItem *ri = (cMenuRecordingItem *)Item;
+            if (!ri->IsDirectory() && ri->Usage())
+               ri->Update(DisplayMenu(), Index, Item->Index() == current);
+            }
+         }
      }
 }
 
@@ -3596,7 +3620,7 @@ eOSState cMenuRecordings::ProcessKey(eKeys Key)
      Display();
      state = osContinue;
      }
-  if (!HasSubMenu()) {
+  if (!HasSubMenu() && state != osContinue) {
      Set(true);
      if (Key != kNone)
         SetHelpKeys();

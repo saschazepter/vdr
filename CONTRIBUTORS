@@ -3428,6 +3428,8 @@ Stefan Hofmann <stefan.hofmann@t-online.de>
  for reporting a bug in handling the resume data in case the recording is renamed or moved
  for suggesting to initialize the resume file of a recording when starting replay, to make
  sure it will be treated as "last replayed"
+ for suggesting to implement automatically updating items in the Recordings menu for ongoing
+ recordings
 
 Stefan Blochberger <Stefan.Blochberger@gmx.de>
  for suggesting to automatically display the progress display whenever replay of a
