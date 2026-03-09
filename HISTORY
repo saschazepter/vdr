@@ -10306,3 +10306,7 @@ Video Disk Recorder Revision History
   Stefan Hofmann).
 - Updated the Hungarian OSD texts (thanks to István Füley).
 - The new menu category mcRecordingDel is now used to mark the "Deleted recordings" menu.
+- Added cSpuDecoder::setResolution(), plus implementation in cDvbSpuDecoder (thanks to Andreas
+  Regel). For backwards compatibility with plugins that might derive from cSpuDecoder, the base
+  class function is not pure, like the others, but simply empty, so that these plugins will still
+  compile.

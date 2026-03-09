@@ -8,7 +8,7 @@
  *
  * parts of this file are derived from the OMS program.
  *
- * $Id: dvbspu.c 4.1 2020/12/18 14:51:57 kls Exp $
+ * $Id: dvbspu.c 5.1 2026/03/09 20:08:29 kls Exp $
  */
 
 #include "dvbspu.h"
@@ -231,6 +231,8 @@ cDvbSpuDecoder::cDvbSpuDecoder()
 {
     clean = true;
     scaleMode = eSpuNormal;
+    xres = spuXres;
+    yres = spuYres;
     spu = NULL;
     osd = NULL;
     spubmp = NULL;
@@ -248,8 +250,8 @@ cDvbSpuDecoder::~cDvbSpuDecoder()
 
 void cDvbSpuDecoder::SetSpuScaling(void)
 {
-    int Width = spuXres;
-    int Height = spuYres;
+    int Width = xres;
+    int Height = yres;
     int OsdWidth = 0;
     int OsdHeight = 0;
     double VideoAspect;
@@ -296,6 +298,14 @@ void cDvbSpuDecoder::processSPU(uint32_t pts, uint8_t * buf, bool AllowedShow)
 void cDvbSpuDecoder::setScaleMode(cSpuDecoder::eScaleMode ScaleMode)
 {
     scaleMode = ScaleMode;
+}
+
+void cDvbSpuDecoder::setResolution(int Xres, int Yres)
+{
+    if (Xres > 0)
+        xres = Xres;
+    if (Yres > 0)
+        yres = Yres;
 }
 
 void cDvbSpuDecoder::setPalette(uint32_t * pal)
