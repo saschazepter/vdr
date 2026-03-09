@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: skinsttng.c 5.6 2026/02/16 14:58:07 kls Exp $
+ * $Id: skinsttng.c 5.7 2026/03/09 15:15:05 kls Exp $
  */
 
 // "Star Trek: The Next Generation"(R) is a registered trademark of Paramount Pictures
@@ -558,7 +558,7 @@ void cSkinSTTNGDisplayMenu::DrawTitle(void)
 {
   const cFont *font = cFont::GetFont(fontOsd);
   const char *VDR = " VDR";
-  bool WithDisk = MenuCategory() == mcMain || MenuCategory() == mcRecording;
+  bool WithDisk = MenuCategory() == mcMain || MenuCategory() == mcRecording || MenuCategory() == mcRecordingDel;
   int w = font->Width(VDR);
   osd->DrawText(x3 + TextSpacing, y0, WithDisk ? cString::sprintf("%s  -  %s", *title, *cVideoDiskUsage::String()) : title, Theme.Color(clrMenuTitle), frameColor, font, x4 - w - x3 - TextSpacing);
   osd->DrawText(x4 - w, y0, VDR, frameColor, clrBlack, font, w, lineHeight);

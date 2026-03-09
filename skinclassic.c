@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: skinclassic.c 5.6 2026/02/16 14:58:07 kls Exp $
+ * $Id: skinclassic.c 5.7 2026/03/09 15:15:05 kls Exp $
  */
 
 #include "skinclassic.h"
@@ -279,7 +279,7 @@ void cSkinClassicDisplayMenu::Clear(void)
 void cSkinClassicDisplayMenu::DrawTitle(void)
 {
   const cFont *font = cFont::GetFont(fontOsd);
-  bool WithDisk = MenuCategory() == mcMain || MenuCategory() == mcRecording;
+  bool WithDisk = MenuCategory() == mcMain || MenuCategory() == mcRecording || MenuCategory() == mcRecordingDel;
   osd->DrawText(x0, y0, WithDisk ? cString::sprintf("%s  -  %s", *title, *cVideoDiskUsage::String()) : title, Theme.Color(clrMenuTitleFg), Theme.Color(clrMenuTitleBg), font, x3 - x0 - dateWidth);
 }
 

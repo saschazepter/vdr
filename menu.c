@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.c 5.48 2026/03/05 19:41:55 kls Exp $
+ * $Id: menu.c 5.49 2026/03/09 15:15:05 kls Exp $
  */
 
 #include "menu.h"
@@ -3106,7 +3106,7 @@ cMenuRecordings::cMenuRecordings(const char *Base, int Level, bool OpenSubMenus,
 :cOsdMenu(Base ? (DelRecMenu ? *cString::sprintf("%s %s", tr("Deleted in"), Base) : Base)
                : (DelRecMenu ? tr("Deleted recordings") : tr("Recordings")), 9, 6, 6)
 {
-  SetMenuCategory(mcRecording);
+  SetMenuCategory(DelRecMenu ? mcRecordingDel : mcRecording);
   base = Base ? strdup(Base) : NULL;
   level = Setup.RecordingDirs ? Level : -1;
   filter = Filter;
