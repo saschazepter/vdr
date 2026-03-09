@@ -4,14 +4,14 @@
 # Istvan Koenigsberger <istvnko@hotmail.com>, 2002, 2003, 2006
 # Guido Josten <guido.josten@t-online.de>, 2002, 2003, 2006
 # Thomas Günther <tom@toms-cafe.de>, 2007
-# István Füley <ifuley@tigercomp.ro>, 2007, 2012, 2013, 2015, 2018, 2024
+# István Füley <ifuley@tigercomp.ro>, 2007, 2012, 2013, 2015, 2018, 2024, 2026
 # Albert Danis <a.danis@gmx.de>, 2015
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-09 21:34+0100\n"
+"POT-Creation-Date: 2026-03-07 22:02+0100\n"
 "PO-Revision-Date: 2024-02-09 06:29+0000\n"
 "Last-Translator: István Füley <ifuley@tigercomp.ro>\n"
 "Language-Team: Hungarian\n"
@@ -850,7 +850,7 @@ msgid "Edited version already exists - overwrite?"
 msgstr "A szerkesztett változat már létezik - felülírjam?"
 
 msgid "Not enough free disk space to start editing process!"
-msgstr ""
+msgstr "Nincs elég hely a lemezen a szerkesztéshez!"
 
 msgid "Error while queueing recording for cutting!"
 msgstr "Hiba a felvétel vágásra előkészítése közben!"
@@ -874,13 +874,13 @@ msgid "Recording info"
 msgstr "Felvétel infó"
 
 msgid "Button$Recordings"
-msgstr ""
+msgstr "Felvételek"
 
 msgid "Button$Restore"
-msgstr ""
+msgstr "Visszaállítás"
 
 msgid "Button$Permanently delete"
-msgstr ""
+msgstr "Végleges törlés"
 
 msgid "Button$Play"
 msgstr "Lejátszás"
@@ -890,39 +890,39 @@ msgstr "Vissza az elejére"
 
 #, c-format
 msgid "Deleted recording (%d days left)"
-msgstr ""
+msgstr "Törölt felvétel (%d nap a törlésig)"
 
 #, c-format
 msgid "Deleted recording (%d hours left)"
-msgstr ""
+msgstr "Törölt felvétel (%d óra a törlésig)"
 
 #, c-format
 msgid "Deleted recording (%d minutes left)"
-msgstr ""
+msgstr "Törölt felvétel (%d perc a törlésig)"
 
 msgid "Deleted recording (expired)"
-msgstr ""
+msgstr "Törölt felvétel (lejárt)"
 
 msgid "Deleted in"
-msgstr ""
+msgstr "Töröltek itt"
 
 msgid "Deleted recordings"
-msgstr ""
+msgstr "Törölt felvételek"
 
 msgid "Recordings"
 msgstr "Felvételek"
 
 msgid "Button$Deleted recordings"
-msgstr ""
+msgstr "Törölt felvételek"
 
 msgid "Button$Commands"
 msgstr "Parancsok"
 
 msgid "No deleted recordings"
-msgstr ""
+msgstr "Nincs törölt felvétel"
 
 msgid "No recordings"
-msgstr ""
+msgstr "Nincsenek felvételek"
 
 msgid "Delete recording?"
 msgstr "Felvétel törlése?"
@@ -934,19 +934,19 @@ msgid "Error while deleting recording!"
 msgstr "Hiba a felvétel törlése közben!"
 
 msgid "Restore recording?"
-msgstr ""
+msgstr "Visszaállítsam a felvételt?"
 
 msgid "Error while restoring recording!"
-msgstr ""
+msgstr "Hiba a felvétel visszaállítása közben!"
 
 msgid "Permanently delete recording?"
-msgstr ""
+msgstr "Végleges törlés?"
 
 msgid "Are you sure? This can't be undone!"
-msgstr ""
+msgstr "Biztos?"
 
 msgid "Error while permanently deleting recording!"
-msgstr ""
+msgstr "Hiba a végleges törlés közben!"
 
 msgid "Recording commands"
 msgstr "Parancsok a felvételekhez"
@@ -1090,10 +1090,10 @@ msgid "Setup.EPG$EPG scan timeout (h)"
 msgstr "Fennmaradt idő az EPG-frissítésig (ó)"
 
 msgid "Setup.EPG$EPG scan max. channel number (0=all)"
-msgstr ""
+msgstr "EPG keresés max. csatorna száma (0=összes)"
 
 msgid "Setup.EPG$EPG pause after scan"
-msgstr ""
+msgstr "EPG szünet keresés után"
 
 msgid "Setup.EPG$EPG bugfix level"
 msgstr "Hibaelhárítás szintje"
@@ -1143,7 +1143,7 @@ msgid "add new transponders"
 msgstr "új transponderek hozzáadása"
 
 msgid "after rewind"
-msgstr ""
+msgstr "Vissza az elejére után"
 
 msgid "DVB"
 msgstr "DVB"
@@ -1466,7 +1466,7 @@ msgid "Setup.Miscellaneous$Remote control repeat delta (ms)"
 msgstr "Távirányító ismétlés intervalluma (ms)"
 
 msgid "Setup.Miscellaneous$Deleted recordings retention (d)"
-msgstr ""
+msgstr "Törölt felvételek megőrzése (n)"
 
 msgid "Setup.Miscellaneous$Initial channel"
 msgstr "Csatorna induláskor"
@@ -1490,7 +1490,7 @@ msgid "Setup.Miscellaneous$Show channel names with source"
 msgstr "Csatornanevek kijelzése forrással együtt"
 
 msgid "Setup.Miscellaneous$Open Recordings menu at last replayed"
-msgstr ""
+msgstr "Felvételmenü az utolsó lejátszásnál"
 
 msgid "Setup.Miscellaneous$Emergency exit"
 msgstr "Vészleállítás"
@@ -1516,7 +1516,7 @@ msgstr " Felvételt befejezni "
 
 #. TRANSLATORS: note the leading blank!
 msgid " Deleted recordings"
-msgstr ""
+msgstr " Törölt felvételek"
 
 #. TRANSLATORS: note the leading blank!
 msgid " Stop replaying"
@@ -1606,7 +1606,7 @@ msgid "Up/Dn for new location - OK to move"
 msgstr "Fel/Le egy új pozícióért - aztán OK"
 
 msgid "Primary device has no MPEG decoder, can't attach player!"
-msgstr ""
+msgstr "Az elsődleges eszköznek nincs MPEG dekódere, nem tudok lejátszót csatolni!"
 
 msgid "Low disk space!"
 msgstr "Adattároló majdnem tele!"
@@ -1654,7 +1654,7 @@ msgid "errors"
 msgstr "hiba"
 
 msgid "error"
-msgstr ""
+msgstr "hiba"
 
 #. TRANSLATORS: note the trailing blank!
 msgid "Volume "

@@ -10304,3 +10304,4 @@ Video Disk Recorder Revision History
 - Increased the maximum number of devices to 32.
 - Now automatically updating items in the Recordings menu for ongoing recordings (suggested by
   Stefan Hofmann).
+- Updated the Hungarian OSD texts (thanks to István Füley).
