@@ -10276,7 +10276,7 @@ Video Disk Recorder Revision History
 - When a replay ends by reaching the end of the recording, it automatically opens the "Recordings"
   menu at the location of that recording (suggested by Markus Ehrnsperger).
 
-2026-03-09:
+2026-03-12:
 
 - Removed leftover cMenuRecordings::path.
 - Fixed a typo in the German OSD texts (thanks to Stefan Hofmann).
@@ -10310,3 +10310,5 @@ Video Disk Recorder Revision History
   Regel). For backwards compatibility with plugins that might derive from cSpuDecoder, the base
   class function is not pure, like the others, but simply empty, so that these plugins will still
   compile.
+- The new color constant clrTranslucent can be used to have the OSD's DrawText() functions actually
+  set background pixels, which clrTransparent doesn't (reported by Matthias Senzel).

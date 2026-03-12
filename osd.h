@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: osd.h 5.3 2025/03/02 11:03:35 kls Exp $
+ * $Id: osd.h 5.4 2026/03/12 10:44:34 kls Exp $
  */
 
 #ifndef __OSD_H
@@ -29,7 +29,8 @@
 
 enum {
                    //AARRGGBB
-  clrTransparent = 0x00000000,
+  clrTransparent = 0x00000000, // not drawn if used as background color in DrawText()
+  clrTranslucent = 0x00000001, // always drawn, even as background color in DrawText()
   clrGray50      = 0x7F000000, // 50% gray
   clrBlack       = 0xFF000000,
   clrRed         = 0xFFFC1414,
@@ -245,6 +246,7 @@ public:
        ///< will be drawn into a rectangle with the given size and the given
        ///< Alignment (default is top-left). If ColorBg is clrTransparent, no
        ///< background pixels will be drawn, which allows drawing "transparent" text.
+       ///< Use clrTranslucent instead if you want to explicitly set background pixels.
   void DrawRectangle(int x1, int y1, int x2, int y2, tColor Color);
        ///< Draws a filled rectangle defined by the upper left (x1, y1) and lower right
        ///< (x2, y2) corners with the given Color. If the rectangle covers the entire
@@ -650,6 +652,7 @@ public:
        ///< will be drawn into a rectangle with the given size and the given
        ///< Alignment (default is top-left). If ColorBg is clrTransparent, no
        ///< background pixels will be drawn, which allows drawing "transparent" text.
+       ///< Use clrTranslucent instead if you want to explicitly set background pixels.
   virtual void DrawRectangle(const cRect &Rect, tColor Color) = 0;
        ///< Draws a filled rectangle with the given Color.
   virtual void DrawEllipse(const cRect &Rect, tColor Color, int Quadrants = 0) = 0;
@@ -952,6 +955,7 @@ public:
        ///< will be drawn into a rectangle with the given size and the given
        ///< Alignment (default is top-left). If ColorBg is clrTransparent, no
        ///< background pixels will be drawn, which allows drawing "transparent" text.
+       ///< Use clrTranslucent instead if you want to explicitly set background pixels.
   virtual void DrawRectangle(int x1, int y1, int x2, int y2, tColor Color);
        ///< Draws a filled rectangle defined by the upper left (x1, y1) and lower right
        ///< (x2, y2) corners with the given Color.
