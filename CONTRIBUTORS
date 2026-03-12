@@ -3710,6 +3710,8 @@ Stefan Herdler <herdler@gmx.de>
  for fixing setting T2 system ID from NIT
  for reporting a problem in deleting recordings
  for making the Watchdog call _exit() if exit() fails
+ for reporting that cEITScanner::Process() calls Skins.Message(), which may cause an
+ invalid lock sequence in case the skin's SetMessage() function sets locks
 
 Tobias Faust <tobias.faust@gmx.de>
  for the original "jumpingseconds" patch

@@ -10312,3 +10312,6 @@ Video Disk Recorder Revision History
   compile.
 - The new color constant clrTranslucent can be used to have the OSD's DrawText() functions actually
   set background pixels, which clrTransparent doesn't (reported by Matthias Senzel).
+- Changed the call to Skins.Message() to Skins.QueueMessage() in cEITScanner::Process(), to avoid
+  an invalid lock sequence in case the skin's SetMessage() or Flush() function sets locks (reported
+  by Stefan Herdler).

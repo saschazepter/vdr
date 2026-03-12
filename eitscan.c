@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: eitscan.c 5.8 2025/03/02 11:03:35 kls Exp $
+ * $Id: eitscan.c 5.9 2026/03/12 13:07:17 kls Exp $
  */
 
 #include "eitscan.h"
@@ -198,7 +198,7 @@ void cEITScanner::Process(void)
                                         if (Device == cDevice::ActualDevice() && !currentChannel) {
                                            cDevice::PrimaryDevice()->StopReplay(); // stop transfer mode
                                            currentChannel = Device->CurrentChannel();
-                                           Skins.Message(mtInfo, tr("Starting EPG scan"));
+                                           Skins.QueueMessage(mtInfo, tr("Starting EPG scan"));
                                            }
                                         }
                                      //dsyslog("EIT scan: %d device %d  source  %-8s tp %5d", scanList->Count(), Device->DeviceNumber() + 1, *cSource::ToString(Channel->Source()), Channel->Transponder());
