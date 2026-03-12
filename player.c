@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: player.c 5.2 2024/10/13 09:47:18 kls Exp $
+ * $Id: player.c 5.3 2026/03/12 15:53:35 kls Exp $
  */
 
 #include "player.h"
@@ -90,7 +90,7 @@ void cControl::Attach(void)
      if (cDevice::PrimaryDevice()->AttachPlayer(control->player))
         control->attached = true;
      else {
-        Skins.Message(mtError, tr("Primary device has no MPEG decoder, can't attach player!"));
+        Skins.QueueMessage(mtError, tr("Primary device has no MPEG decoder, can't attach player!"));
         Shutdown();
         }
      }

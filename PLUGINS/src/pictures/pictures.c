@@ -3,7 +3,7 @@
  *
  * See the README file for copyright information and how to reach the author.
  *
- * $Id: pictures.c 5.2 2025/03/02 11:03:35 kls Exp $
+ * $Id: pictures.c 5.3 2026/03/12 15:53:35 kls Exp $
  */
 
 #include <getopt.h>
@@ -101,7 +101,7 @@ cOsdObject *cPluginPictures::MainMenuAction(void)
   // Perform the action when selected from the main VDR menu.
   if (*PictureDirectory)
      return cPictureMenu::CreatePictureMenu();
-  Skins.Message(mtWarning, tr("No picture directory has been defined!"));
+  Skins.QueueMessage(mtWarning, tr("No picture directory has been defined!"));
   return NULL;
 }
 

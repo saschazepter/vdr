@@ -10315,3 +10315,5 @@ Video Disk Recorder Revision History
 - Changed the call to Skins.Message() to Skins.QueueMessage() in cEITScanner::Process(), to avoid
   an invalid lock sequence in case the skin's SetMessage() or Flush() function sets locks (reported
   by Stefan Herdler).
+- Changed all calls to Skins.Message() that don't use mtStatus and don't check the return value to
+  to Skins.QueueMessage(), to avoid invalid lock sequences.

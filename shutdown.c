@@ -6,7 +6,7 @@
  *
  * Original version written by Udo Richter <udo_richter@gmx.de>.
  *
- * $Id: shutdown.c 5.2 2025/07/21 19:58:14 kls Exp $
+ * $Id: shutdown.c 5.3 2026/03/12 15:53:35 kls Exp $
  */
 
 #include "shutdown.h"
@@ -172,7 +172,7 @@ bool cShutdownHandler::ConfirmShutdown(bool Interactive)
 
   if (!shutdownCommand) {
      if (Interactive)
-        Skins.Message(mtError, tr("Can't shutdown - option '-s' not given!"));
+        Skins.QueueMessage(mtError, tr("Can't shutdown - option '-s' not given!"));
      return false;
      }
   if (RecordingsHandler.Active()) {

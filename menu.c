@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.c 5.49 2026/03/09 15:15:05 kls Exp $
+ * $Id: menu.c 5.50 2026/03/12 15:53:35 kls Exp $
  */
 
 #include "menu.h"
@@ -267,7 +267,7 @@ eOSState cMenuEditChannel::ProcessKey(eKeys Key)
            Modified = true;
            }
         else {
-           Skins.Message(mtError, tr("Channel settings are not unique!"));
+           Skins.QueueMessage(mtError, tr("Channel settings are not unique!"));
            state = osContinue;
            }
         channelsStateKey->Remove(Modified);
@@ -504,7 +504,7 @@ eOSState cMenuChannels::Delete(void)
      // Check if there is a timer using this channel:
      if (Timers->UsesChannel(Channel)) {
         channelsStateKey.Remove(false);
-        Skins.Message(mtError, tr("Channel is being used by a timer!"));
+        Skins.QueueMessage(mtError, tr("Channel is being used by a timer!"));
         return osContinue;
         }
      if (Interface->Confirm(tr("Delete channel?"))) {
@@ -741,13 +741,13 @@ eOSState cMenuEditFolder::Confirm(void)
      // each name may occur only once in a folder list
      for (cNestedItem *Folder = list->First(); Folder; Folder = list->Next(Folder)) {
          if (strcmp(Folder->Text(), name) == 0) {
-            Skins.Message(mtError, tr("Folder name already exists!"));
+            Skins.QueueMessage(mtError, tr("Folder name already exists!"));
             return osContinue;
             }
          }
      char *p = strpbrk(name, "\\{}#~"); // FOLDERDELIMCHAR
      if (p) {
-        Skins.Message(mtError, cString::sprintf(tr("Folder name must not contain '%c'!"), *p));
+        Skins.QueueMessage(mtError, cString::sprintf(tr("Folder name must not contain '%c'!"), *p));
         return osContinue;
         }
      }
@@ -1092,7 +1092,7 @@ void cMenuEditTimer::SetPatternItem(bool Initial)
      }
   if (!pattern) {
      if (data.HasFlags(tfRecording)) {
-        Skins.Message(mtWarning, tr("Timer is recording!"));
+        Skins.QueueMessage(mtWarning, tr("Timer is recording!"));
         return;
         }
      if (!*data.pattern) {
@@ -1131,7 +1131,7 @@ eOSState cMenuEditTimer::SetFolder(void)
 
 static bool RemoteTimerError(const cTimer *Timer)
 {
-  Skins.Message(mtError, cString::sprintf("%s %d@%s!", tr("Error while accessing remote timer"), Timer->Id(), Timer->Remote()));
+  Skins.QueueMessage(mtError, cString::sprintf("%s %d@%s!", tr("Error while accessing remote timer"), Timer->Id(), Timer->Remote()));
   return false; // convenience return code
 }
 
@@ -1157,7 +1157,7 @@ eOSState cMenuEditTimer::ProcessKey(eKeys Key)
                            if (cTimer *t = Timers->GetById(timer->Id(), timer->Remote()))
                               timer = t;
                            else {
-                              Skins.Message(mtWarning, tr("Timer has been deleted!"));
+                              Skins.QueueMessage(mtWarning, tr("Timer has been deleted!"));
                               break;
                               }
                            }
@@ -1165,7 +1165,7 @@ eOSState cMenuEditTimer::ProcessKey(eKeys Key)
                         if (const cChannel *Channel = Channels->GetByNumber(channel))
                            data.channel = Channel;
                         else {
-                           Skins.Message(mtError, tr("*** Invalid Channel ***"));
+                           Skins.QueueMessage(mtError, tr("*** Invalid Channel ***"));
                            break;
                            }
                         if (!*data.file)
@@ -1762,7 +1762,7 @@ eOSState cMenuWhatsOn::Switch(void)
      if (Channel)
         return osEnd;
      }
-  Skins.Message(mtError, tr("Can't switch channel!"));
+  Skins.QueueMessage(mtError, tr("Can't switch channel!"));
   return osContinue;
 }
 
@@ -2124,7 +2124,7 @@ eOSState cMenuSchedule::Switch(void)
      if (Channel)
         return osEnd;
      }
-  Skins.Message(mtError, tr("Can't switch channel!"));
+  Skins.QueueMessage(mtError, tr("Can't switch channel!"));
   return osContinue;
 }
 
@@ -2456,7 +2456,7 @@ eOSState cMenuCam::Select(void)
      if (ciEnquiry->ExpectedLength() < 0xFF && int(strlen(input)) != ciEnquiry->ExpectedLength()) {
         char buffer[64];
         snprintf(buffer, sizeof(buffer), tr("Please enter %d digits!"), ciEnquiry->ExpectedLength());
-        Skins.Message(mtError, buffer);
+        Skins.QueueMessage(mtError, buffer);
         return osContinue;
         }
      ciEnquiry->Reply(input);
@@ -2497,7 +2497,7 @@ eOSState cMenuCam::ProcessKey(eKeys Key)
   else if (time(NULL) - lastCamExchange < CAMRESPONSETIMEOUT)
      QueryCam();
   else {
-     Skins.Message(mtError, tr("CAM not responding!"));
+     Skins.QueueMessage(mtError, tr("CAM not responding!"));
      return osBack;
      }
   return state;
@@ -2633,7 +2633,7 @@ eOSState cMenuPathEdit::ApplyChanges(void)
           Recordings->SetModified();
      }
      if (Error) {
-        Skins.Message(mtError, tr("Error while moving folder!"));
+        Skins.QueueMessage(mtError, tr("Error while moving folder!"));
         return osContinue;
         }
      if (strcmp(folder, oldFolder))
@@ -2766,7 +2766,7 @@ bool cMenuRecordingEdit::RefreshRecording(void)
         Set();
      else {
         recordingsStateKey.Remove();
-        Skins.Message(mtWarning, tr("Recording vanished!"));
+        Skins.QueueMessage(mtWarning, tr("Recording vanished!"));
         return false;
         }
      recordingsStateKey.Remove();
@@ -2796,9 +2796,9 @@ eOSState cMenuRecordingEdit::Action(void)
   else if (doCut) {
      if (access(cCutter::EditedFileName(recording->FileName()), F_OK) != 0 || Interface->Confirm(tr("Edited version already exists - overwrite?"))) {
         if (!EnoughFreeDiskSpaceForEdit(recording->FileName()))
-           Skins.Message(mtError, tr("Not enough free disk space to start editing process!"));
+           Skins.QueueMessage(mtError, tr("Not enough free disk space to start editing process!"));
         else if (!RecordingsHandler.Add(ruCut, recording->FileName()))
-           Skins.Message(mtError, tr("Error while queueing recording for cutting!"));
+           Skins.QueueMessage(mtError, tr("Error while queueing recording for cutting!"));
         }
      }
   recordingIsInUse = recording->IsInUse();
@@ -2839,7 +2839,7 @@ eOSState cMenuRecordingEdit::DeleteMarks(void)
            }
         }
      else
-        Skins.Message(mtError, tr("Error while deleting editing marks!"));
+        Skins.QueueMessage(mtError, tr("Error while deleting editing marks!"));
      }
   return osContinue;
 }
@@ -2851,14 +2851,14 @@ eOSState cMenuRecordingEdit::ApplyChanges(void)
   cRecording *Recording = Recordings->GetByName(recording->FileName());
   if (!Recording) {
      StateKey.Remove(false);
-     Skins.Message(mtWarning, tr("Recording vanished!"));
+     Skins.QueueMessage(mtWarning, tr("Recording vanished!"));
      return osBack;
      }
   bool Modified = false;
   if (priority != recording->Priority() || lifetime != recording->Lifetime()) {
      if (!Recording->ChangePriorityLifetime(priority, lifetime)) {
         StateKey.Remove(Modified);
-        Skins.Message(mtError, tr("Error while changing priority/lifetime!"));
+        Skins.QueueMessage(mtError, tr("Error while changing priority/lifetime!"));
         return osContinue;
         }
      Modified = true;
@@ -2873,7 +2873,7 @@ eOSState cMenuRecordingEdit::ApplyChanges(void)
   if (strcmp(NewName, Recording->Name())) {
      if (!Recording->ChangeName(NewName)) {
         StateKey.Remove(Modified);
-        Skins.Message(mtError, tr("Error while changing folder/name!"));
+        Skins.QueueMessage(mtError, tr("Error while changing folder/name!"));
         return osContinue;
         }
      Modified = true;
@@ -2961,7 +2961,7 @@ bool cMenuRecording::RefreshRecording(void)
         Display();
      else {
         recordingsStateKey.Remove();
-        Skins.Message(mtWarning, tr("Recording vanished!"));
+        Skins.QueueMessage(mtWarning, tr("Recording vanished!"));
         return false;
         }
      recordingsStateKey.Remove();
@@ -3428,7 +3428,7 @@ eOSState cMenuRecordings::Delete(void)
            return osUserRecRemoved;
            }
         else
-           Skins.Message(mtError, tr("Error while deleting recording!"));
+           Skins.QueueMessage(mtError, tr("Error while deleting recording!"));
         StateKey.Remove();
         recordingsStateKey.Remove();
         }
@@ -3462,7 +3462,7 @@ eOSState cMenuRecordings::Restore(void)
               return osUserRecRemoved;
               }
            else
-              Skins.Message(mtError, tr("Error while restoring recording!"));
+              Skins.QueueMessage(mtError, tr("Error while restoring recording!"));
            StateKey.Remove();
            recordingsStateKey.Remove();
            }
@@ -3492,7 +3492,7 @@ eOSState cMenuRecordings::Purge(void)
               return osUserRecRemoved;
               }
            else
-              Skins.Message(mtError, tr("Error while permanently deleting recording!"));
+              Skins.QueueMessage(mtError, tr("Error while permanently deleting recording!"));
            recordingsStateKey.Remove();
            }
         }
@@ -4270,7 +4270,7 @@ eOSState cMenuSetupCAM::Menu(void)
         if (item->CamSlot()->HasUserIO())
            return AddSubMenu(new cMenuCam(item->CamSlot()));
         }
-     Skins.Message(mtError, tr("Can't open CAM menu!"));
+     Skins.QueueMessage(mtError, tr("Can't open CAM menu!"));
      }
   return osContinue;
 }
@@ -4306,7 +4306,7 @@ eOSState cMenuSetupCAM::Activate(void)
                   }
               }
            }
-        Skins.Message(mtError, tr("Can't activate CAM!"));
+        Skins.QueueMessage(mtError, tr("Can't activate CAM!"));
         }
      }
   return osContinue;
@@ -4318,7 +4318,7 @@ eOSState cMenuSetupCAM::Reset(void)
   if (item) {
      if (!item->CamSlot()->Device() || Interface->Confirm(tr("CAM is in use - really reset?"))) {
         if (!item->CamSlot()->Reset())
-           Skins.Message(mtError, tr("Can't reset CAM!"));
+           Skins.QueueMessage(mtError, tr("Can't reset CAM!"));
         }
      }
   return osContinue;
@@ -4571,7 +4571,7 @@ eOSState cMenuSetupPlugins::ProcessKey(eKeys Key)
                  menu->SetPlugin(p);
                  return AddSubMenu(menu);
                  }
-              Skins.Message(mtInfo, tr("This plugin has no setup parameters!"));
+              Skins.QueueMessage(mtInfo, tr("This plugin has no setup parameters!"));
               }
            }
         }
@@ -5370,7 +5370,7 @@ cDisplayTracks *cDisplayTracks::Create(void)
         new cDisplayTracks;
      return currentDisplayTracks;
      }
-  Skins.Message(mtWarning, tr("No audio available!"));
+  Skins.QueueMessage(mtWarning, tr("No audio available!"));
   return NULL;
 }
 
@@ -5488,7 +5488,7 @@ cDisplaySubtitleTracks *cDisplaySubtitleTracks::Create(void)
         new cDisplaySubtitleTracks;
      return currentDisplayTracks;
      }
-  Skins.Message(mtWarning, tr("No subtitles available!"));
+  Skins.QueueMessage(mtWarning, tr("No subtitles available!"));
   return NULL;
 }
 
@@ -5703,7 +5703,7 @@ bool cRecordControls::Start(cTimers *Timers, cTimer *Timer, bool Pause)
   if (FreeMB < MINFREEDISK) {
      if (!Timer || time(NULL) - LastNoDiskSpaceMessage > NODISKSPACEDELTA) {
         isyslog("not enough disk space to start recording%s%s", Timer ? " timer " : "", Timer ? *Timer->ToDescr() : "");
-        Skins.Message(mtWarning, tr("Not enough disk space to start recording!"));
+        Skins.QueueMessage(mtWarning, tr("Not enough disk space to start recording!"));
         LastNoDiskSpaceMessage = time(NULL);
         }
      return false;
@@ -5737,7 +5737,7 @@ bool cRecordControls::Start(cTimers *Timers, cTimer *Timer, bool Pause)
         }
      else if (!Timer || !Timer->Pending()) {
         isyslog("no free DVB device to record channel %d (%s)!", ch, Channel->Name());
-        Skins.Message(mtError, tr("No free DVB device to record!"));
+        Skins.QueueMessage(mtError, tr("No free DVB device to record!"));
         }
      }
   else
@@ -6007,7 +6007,7 @@ void cReplayControl::Stop(void)
                    }
               }
               if (Error)
-                 Skins.Message(mtError, tr("Error while deleting recording!"));
+                 Skins.QueueMessage(mtError, tr("Error while deleting recording!"));
               return;
               }
            }
@@ -6382,20 +6382,20 @@ void cReplayControl::EditCut(void)
      Hide();
      if (!RecordingsHandler.GetUsage(fileName)) {
         if (!marks.Count())
-           Skins.Message(mtError, tr("No editing marks defined!"));
+           Skins.QueueMessage(mtError, tr("No editing marks defined!"));
         else if (!marks.GetNumSequences())
-           Skins.Message(mtError, tr("No editing sequences defined!"));
+           Skins.QueueMessage(mtError, tr("No editing sequences defined!"));
         else if (access(cCutter::EditedFileName(fileName), F_OK) == 0 && !Interface->Confirm(tr("Edited version already exists - overwrite?")))
            ;
         else if (!EnoughFreeDiskSpaceForEdit(fileName))
-           Skins.Message(mtError, tr("Not enough free disk space to start editing process!"));
+           Skins.QueueMessage(mtError, tr("Not enough free disk space to start editing process!"));
         else if (!RecordingsHandler.Add(ruCut, fileName))
-           Skins.Message(mtError, tr("Can't start editing process!"));
+           Skins.QueueMessage(mtError, tr("Can't start editing process!"));
         else
-           Skins.Message(mtInfo, tr("Editing process started"));
+           Skins.QueueMessage(mtInfo, tr("Editing process started"));
         }
      else
-        Skins.Message(mtError, tr("Editing process already active!"));
+        Skins.QueueMessage(mtError, tr("Editing process already active!"));
      ShowMode();
      }
 }

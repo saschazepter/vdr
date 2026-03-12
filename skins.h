@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: skins.h 5.10 2026/03/09 15:15:05 kls Exp $
+ * $Id: skins.h 5.11 2026/03/12 15:53:35 kls Exp $
  */
 
 #ifndef __SKINS_H
@@ -478,6 +478,9 @@ public:
        ///< has been received within Seconds (the default value of 0 results
        ///< in the value defined for "Message time" in the setup), kNone
        ///< will be returned.
+       ///< Do not call this function while holding a lock on any of the
+       ///< global lists (Timers, Channels, [Deleted]Recordings, Schedules),
+       ///< use QueueMessage() instead.
        ///< If Message() is called from a background thread and Type is not
        ///< mtStatus, the call will be automatically forwarded to QueueMessage().
   int QueueMessage(eMessageType Type, const char *s, int Seconds = 0, int Timeout = 0);
