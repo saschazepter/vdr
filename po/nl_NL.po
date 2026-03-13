@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-09 21:34+0100\n"
+"POT-Creation-Date: 2026-03-13 11:59+0100\n"
 "PO-Revision-Date: 2015-02-10 19:43+0100\n"
 "Last-Translator: Erik Oomen <oomen.e@gmail.com>\n"
 "Language-Team: Dutch <vdr@linuxtv.org>\n"
@@ -814,6 +814,9 @@ msgstr "Fout tijdens het verplaatsen van de map!"
 msgid "Edit recording"
 msgstr "Opname bewerken"
 
+msgid "Parental rating"
+msgstr ""
+
 msgid "This recording is currently in use - no changes are possible!"
 msgstr "Deze opname is momenteel in gebruik - geen wijzigingen zijn mogelijk!"
 
@@ -864,6 +867,9 @@ msgstr "Fout bij het verwijderen van alle bewerkings markeringen!"
 
 msgid "Error while changing priority/lifetime!"
 msgstr "Fout tijdens het wijzigen prioriteit / duur!"
+
+msgid "Error while changing parental rating!"
+msgstr ""
 
 msgid "Error while changing folder/name!"
 msgstr "Fout tijdens het wijzigen map / naam!"

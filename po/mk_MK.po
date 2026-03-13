@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-09 21:34+0100\n"
+"POT-Creation-Date: 2026-03-13 11:59+0100\n"
 "PO-Revision-Date: 2018-03-31 21:47+0100\n"
 "Last-Translator: Dimitar Petrovski <dimeptr@gmail.com>\n"
 "Language-Team: Macedonian <kde-i18n-doc@kde.org>\n"
@@ -810,6 +810,9 @@ msgstr "Грешка при поместување папка!"
 msgid "Edit recording"
 msgstr "Уреди снимка"
 
+msgid "Parental rating"
+msgstr ""
+
 msgid "This recording is currently in use - no changes are possible!"
 msgstr "Оваа снимка е моментално во употреба - промени не се возможни!"
 
@@ -860,6 +863,9 @@ msgstr "Грешка при бришење на ознака за уредува
 
 msgid "Error while changing priority/lifetime!"
 msgstr "Грешка при промена на приоритет/траење!"
+
+msgid "Error while changing parental rating!"
+msgstr ""
 
 msgid "Error while changing folder/name!"
 msgstr "Грешка при промена на папка/име!"

@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: recording.h 5.24 2026/02/23 15:00:09 kls Exp $
+ * $Id: recording.h 5.25 2026/03/13 11:11:21 kls Exp $
  */
 
 #ifndef __RECORDING_H
@@ -102,6 +102,7 @@ public:
   double FramesPerSecond(void) const { return framesPerSecond; }
   int Priority(void) const { return priority; }
   int Lifetime(void) const { return lifetime; }
+  int ParentalRating(void) { return event->ParentalRating(); }
   uint16_t FrameWidth(void) const { return frameWidth; }
   uint16_t FrameHeight(void) const { return frameHeight; }
   eScanType ScanType(void) const { return scanType; }
@@ -112,6 +113,7 @@ public:
   void SetFramesPerSecond(double FramesPerSecond);
   void SetPriority(int Priority);
   void SetLifetime(int Lifetime);
+  void SetParentalRating(int ParentalRating);
   void SetFrameParams(uint16_t FrameWidth, uint16_t FrameHeight, eScanType ScanType, eAspectRatio AspectRatio);
   void SetFileName(const char *FileName);
   int Errors(void) const { return errors; } // returns -1 if undefined

@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-09 21:34+0100\n"
+"POT-Creation-Date: 2026-03-13 11:59+0100\n"
 "PO-Revision-Date: 2018-04-14 10:16+0100\n"
 "Last-Translator: Bernard Jaulin <bernard.jaulin@gmail.com>\n"
 "Language-Team: French <vdr@linuxtv.org>\n"
@@ -819,6 +819,9 @@ msgstr "Erreur lors du déplacement du dossier !"
 msgid "Edit recording"
 msgstr "Éditer l'enregistrement"
 
+msgid "Parental rating"
+msgstr ""
+
 msgid "This recording is currently in use - no changes are possible!"
 msgstr "Cet enregistrement est en cours d'utilisation - pas de modification possible !"
 
@@ -869,6 +872,9 @@ msgstr "Erreur pendant la suppression des marqueurs du montage !"
 
 msgid "Error while changing priority/lifetime!"
 msgstr "Erreur pendant le changement de priorité/durée de vie !"
+
+msgid "Error while changing parental rating!"
+msgstr ""
 
 msgid "Error while changing folder/name!"
 msgstr "Erreur pendant le changement de dossier/nom !"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-09 21:34+0100\n"
+"POT-Creation-Date: 2026-03-13 11:59+0100\n"
 "PO-Revision-Date: 2015-02-12 21:58+0100\n"
 "Last-Translator: Magnus Sirviö <sirwio@hotmail.com>\n"
 "Language-Team: Swedish <vdr@linuxtv.org>\n"
@@ -813,6 +813,9 @@ msgstr "Ett fel upstod när mappen skulle flyttas!"
 msgid "Edit recording"
 msgstr "Redigera inspelning"
 
+msgid "Parental rating"
+msgstr ""
+
 msgid "This recording is currently in use - no changes are possible!"
 msgstr "Den här inspelningen används just nu - inga förändringar är möjliga!"
 
@@ -863,6 +866,9 @@ msgstr "Ett fel uppstod när redigeringsmärken skulle tas bort!"
 
 msgid "Error while changing priority/lifetime!"
 msgstr "Ett fel upstod när prioritet/livstid skulle ändras!"
+
+msgid "Error while changing parental rating!"
+msgstr ""
 
 msgid "Error while changing folder/name!"
 msgstr "Ett fel uppstod när mapp/namn skulle ändras!"

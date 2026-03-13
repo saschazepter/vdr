@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-09 21:34+0100\n"
+"POT-Creation-Date: 2026-03-13 11:59+0100\n"
 "PO-Revision-Date: 2015-02-11 22:26+0100\n"
 "Last-Translator: Lucian Muresan <lucianm@users.sourceforge.net>\n"
 "Language-Team: Romanian <vdr@linuxtv.org>\n"
@@ -810,6 +810,9 @@ msgstr "Eroare la mutarea directorului!"
 msgid "Edit recording"
 msgstr "Editează înregistrarea"
 
+msgid "Parental rating"
+msgstr ""
+
 msgid "This recording is currently in use - no changes are possible!"
 msgstr "Această înregistrare tocmai este accesată - nu sunt posibile modificări!"
 
@@ -860,6 +863,9 @@ msgstr "Eroare la ștergerea marcajelor de editare!"
 
 msgid "Error while changing priority/lifetime!"
 msgstr "Eroare la schimbarea priorității/timpului de păstrare!"
+
+msgid "Error while changing parental rating!"
+msgstr ""
 
 msgid "Error while changing folder/name!"
 msgstr "Eroare la schimbarea directorului/numelui!"

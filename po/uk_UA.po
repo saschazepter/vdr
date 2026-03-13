@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-09 21:34+0100\n"
+"POT-Creation-Date: 2026-03-13 11:59+0100\n"
 "PO-Revision-Date: 2018-03-18 20:00+0100\n"
 "Last-Translator: Yarema aka Knedlyk <yupadmin@gmail.com>\n"
 "Language-Team: Ukrainian <vdr@linuxtv.org>\n"
@@ -809,6 +809,9 @@ msgstr "Помилка перенесення теки!"
 msgid "Edit recording"
 msgstr "Редагувати запис"
 
+msgid "Parental rating"
+msgstr ""
+
 msgid "This recording is currently in use - no changes are possible!"
 msgstr "Цей запис зараз використовується - не дозволено жодних змін!"
 
@@ -859,6 +862,9 @@ msgstr "Помилка вилучення міток редагування!"
 
 msgid "Error while changing priority/lifetime!"
 msgstr "Помилка при зміні пріоритету/тривалості!"
+
+msgid "Error while changing parental rating!"
+msgstr ""
 
 msgid "Error while changing folder/name!"
 msgstr "Помилка при зміні теки/назви!"

@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: recording.c 5.55 2026/02/13 15:59:28 kls Exp $
+ * $Id: recording.c 5.56 2026/03/13 11:11:21 kls Exp $
  */
 
 #include "recording.h"
@@ -511,6 +511,11 @@ void cRecordingInfo::SetPriority(int Priority)
 void cRecordingInfo::SetLifetime(int Lifetime)
 {
   lifetime = Lifetime;
+}
+
+void cRecordingInfo::SetParentalRating(int ParentalRating)
+{
+  ((cEvent *)event)->SetParentalRating(ParentalRating);
 }
 
 void cRecordingInfo::SetFrameParams(uint16_t FrameWidth, uint16_t FrameHeight, eScanType ScanType, eAspectRatio AspectRatio)

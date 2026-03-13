@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 2.7.9\n"
 "Report-Msgid-Bugs-To: <vdr-bugs@tvdr.de>\n"
-"POT-Creation-Date: 2026-02-09 21:34+0100\n"
+"POT-Creation-Date: 2026-03-13 11:59+0100\n"
 "PO-Revision-Date: 2015-02-10 13:45+0100\n"
 "Last-Translator: Stefan Hofmann <stefan.hofmann@t-online.de>\n"
 "Language-Team: German <vdr@linuxtv.org>\n"
@@ -811,6 +811,9 @@ msgstr "Fehler beim Verschieben des Ordners!"
 msgid "Edit recording"
 msgstr "Aufzeichnung bearbeiten"
 
+msgid "Parental rating"
+msgstr "Altersfreigabe"
+
 msgid "This recording is currently in use - no changes are possible!"
 msgstr "Diese Aufzeichnung ist zur Zeit in Verwendung - keine Änderungen möglich!"
 
@@ -861,6 +864,9 @@ msgstr "Fehler beim Löschen der Schnittmarken!"
 
 msgid "Error while changing priority/lifetime!"
 msgstr "Fehler beim Ändern der Priorität bzw. Lebensdauer!"
+
+msgid "Error while changing parental rating!"
+msgstr "Fehler bem Ändern der Altersfreigabe"
 
 msgid "Error while changing folder/name!"
 msgstr "Fehler beim Ändern des Ordners bzw. Namens!"

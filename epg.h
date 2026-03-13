@@ -7,7 +7,7 @@
  * Original version (as used in VDR before 1.3.0) written by
  * Robert Schneider <Robert.Schneider@web.de> and Rolf Hakenes <hakenes@hippomi.de>.
  *
- * $Id: epg.h 5.11 2026/02/04 10:06:06 kls Exp $
+ * $Id: epg.h 5.12 2026/03/13 11:11:21 kls Exp $
  */
 
 #ifndef __EPG_H
@@ -19,6 +19,7 @@
 #include "tools.h"
 
 #define MAXEPGBUGFIXLEVEL 3
+#define MAXPARENTALRATING 18 // maximum age (years)
 
 #define EPG_LINGER_TIME (max(Setup.EPGLinger, 180) * 60) // seconds to keep old EPG data (internal, must be at least Setup.EPGLinger)
 

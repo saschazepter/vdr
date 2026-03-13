@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.c 5.50 2026/03/12 15:53:35 kls Exp $
+ * $Id: menu.c 5.51 2026/03/13 11:11:21 kls Exp $
  */
 
 #include "menu.h"
@@ -2673,6 +2673,7 @@ private:
   char name[NAME_MAX];
   int priority;
   int lifetime;
+  int parentalRating;
   cMenuEditStrItem *folderItem;
   cMenuEditStrItem *nameItem;
   const char *buttonFolder;
@@ -2696,7 +2697,7 @@ public:
   };
 
 cMenuRecordingEdit::cMenuRecordingEdit(const cRecording *Recording)
-:cOsdMenu(tr("Edit recording"), 12)
+:cOsdMenu(tr("Edit recording"), 15)
 {
   SetMenuCategory(mcRecordingEdit);
   recording = Recording;
@@ -2705,6 +2706,7 @@ cMenuRecordingEdit::cMenuRecordingEdit(const cRecording *Recording)
   strn0cpy(name, recording->BaseName(), sizeof(name));
   priority = recording->Priority();
   lifetime = recording->Lifetime();
+  parentalRating = recording->Info()->ParentalRating();
   folderItem = NULL;
   nameItem = NULL;
   buttonFolder = NULL;
@@ -2729,6 +2731,8 @@ void cMenuRecordingEdit::Set(void)
   Add(p = new cMenuEditIntItem(tr("Priority"), &priority, 0, MAXPRIORITY));
   p->SetSelectable(!recordingIsInUse);
   Add(p = new cMenuEditIntItem(tr("Lifetime"), &lifetime, 0, MAXLIFETIME));
+  p->SetSelectable(!recordingIsInUse);
+  Add(p = new cMenuEditIntItem(tr("Parental rating"), &parentalRating, 0, MAXPARENTALRATING));
   p->SetSelectable(!recordingIsInUse);
   if (recordingIsInUse) {
      Add(new cOsdItem("", osUnknown, false));
@@ -2859,6 +2863,15 @@ eOSState cMenuRecordingEdit::ApplyChanges(void)
      if (!Recording->ChangePriorityLifetime(priority, lifetime)) {
         StateKey.Remove(Modified);
         Skins.QueueMessage(mtError, tr("Error while changing priority/lifetime!"));
+        return osContinue;
+        }
+     Modified = true;
+     }
+  if (parentalRating != recording->Info()->ParentalRating()) {
+     Recording->Info()->SetParentalRating(parentalRating);
+     if (!Recording->WriteInfo()) {
+        StateKey.Remove(Modified);
+        Skins.QueueMessage(mtError, tr("Error while changing parental rating!"));
         return osContinue;
         }
      Modified = true;
