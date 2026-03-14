@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: recording.h 5.26 2026/03/14 15:44:39 kls Exp $
+ * $Id: recording.h 5.27 2026/03/14 15:50:43 kls Exp $
  */
 
 #ifndef __RECORDING_H
@@ -222,7 +222,7 @@ public:
        ///< for this recording, it also returns true.
   void ReadInfo(bool Force = false);
   bool WriteInfo(const char *OtherFileName = NULL);
-       ///< Writes in info file of this recording. If OtherFileName is given, the info
+       ///< Writes the info file of this recording. If OtherFileName is given, the info
        ///< file will be written under that recording file name instead of this
        ///< recording's file name.
   void SetStartTime(time_t Start);
