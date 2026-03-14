@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: recording.c 5.56 2026/03/13 11:11:21 kls Exp $
+ * $Id: recording.c 5.57 2026/03/14 15:20:49 kls Exp $
  */
 
 #include "recording.h"
@@ -485,11 +485,11 @@ cRecordingInfo::~cRecordingInfo()
 void cRecordingInfo::SetData(const char *Title, const char *ShortText, const char *Description)
 {
   if (Title)
-     ((cEvent *)event)->SetTitle(Title);
+     SetTitle(Title);
   if (ShortText)
-     ((cEvent *)event)->SetShortText(ShortText);
+     SetShortText(ShortText);
   if (Description)
-     ((cEvent *)event)->SetDescription(Description);
+     SetDescription(Description);
 }
 
 void cRecordingInfo::SetAux(const char *Aux)
@@ -511,6 +511,21 @@ void cRecordingInfo::SetPriority(int Priority)
 void cRecordingInfo::SetLifetime(int Lifetime)
 {
   lifetime = Lifetime;
+}
+
+void cRecordingInfo::SetTitle(const char *Title)
+{
+  ((cEvent *)event)->SetTitle(Title);
+}
+
+void cRecordingInfo::SetShortText(const char *ShortText)
+{
+  ((cEvent *)event)->SetShortText(ShortText);
+}
+
+void cRecordingInfo::SetDescription(const char *Description)
+{
+  ((cEvent *)event)->SetDescription(Description);
 }
 
 void cRecordingInfo::SetParentalRating(int ParentalRating)
@@ -1077,7 +1092,9 @@ cRecording::cRecording(const char *FileName)
                     esyslog("ERROR: out of memory");
                  }
               }
-           info->SetData(data[0], data[1], data[2]);
+           info->SetTitle(data[0]);
+           info->SetShortText(data[1]);
+           info->SetDescription(data[2]);
            for (int i = 0; i < 3; i ++)
                free(data[i]);
            }

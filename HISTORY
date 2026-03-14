@@ -10276,7 +10276,7 @@ Video Disk Recorder Revision History
 - When a replay ends by reaching the end of the recording, it automatically opens the "Recordings"
   menu at the location of that recording (suggested by Markus Ehrnsperger).
 
-2026-03-13:
+2026-03-14:
 
 - Removed leftover cMenuRecordings::path.
 - Fixed a typo in the German OSD texts (thanks to Stefan Hofmann).
@@ -10319,3 +10319,5 @@ Video Disk Recorder Revision History
   to Skins.QueueMessage(), to avoid invalid lock sequences.
 - The "Edit recording" menu can now modify the value of the parental rating (suggested by Stefan
   Hofmann).
+- The function cRecordingInfo::SetData() is now deprecated. Use the explicit functions SetTitle(),
+  SetShortText() and SetDescription() instead.

@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: recording.h 5.25 2026/03/13 11:11:21 kls Exp $
+ * $Id: recording.h 5.26 2026/03/14 15:44:39 kls Exp $
  */
 
 #ifndef __RECORDING_H
@@ -113,6 +113,9 @@ public:
   void SetFramesPerSecond(double FramesPerSecond);
   void SetPriority(int Priority);
   void SetLifetime(int Lifetime);
+  void SetTitle(const char *Title);
+  void SetShortText(const char *ShortText);
+  void SetDescription(const char *Description);
   void SetParentalRating(int ParentalRating);
   void SetFrameParams(uint16_t FrameWidth, uint16_t FrameHeight, eScanType ScanType, eAspectRatio AspectRatio);
   void SetFileName(const char *FileName);
@@ -122,6 +125,7 @@ public:
   bool Write(FILE *f, const char *Prefix = "") const;
   bool Read(bool Force = false);
   bool Write(void) const;
+  [[deprecated("use SetTitle(), SetShortText() and SetDescription() instead")]]
   void SetData(const char *Title, const char *ShortText, const char *Description);
   void SetAux(const char *Aux);
   };
