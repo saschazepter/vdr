@@ -22,7 +22,7 @@
  *
  * The project's page is at https://www.tvdr.de
  *
- * $Id: vdr.c 5.27 2026/03/02 11:31:52 kls Exp $
+ * $Id: vdr.c 5.28 2026/03/15 10:46:04 kls Exp $
  */
 
 #include <getopt.h>
@@ -1537,15 +1537,18 @@ int main(int argc, char *argv[])
              default:    break;
              }
            }
-        if (!Menu) {
+
+        // Advance the EIT scanner:
+        if (!Menu)
            EITScanner.Process();
-           bool Error = false;
-           if (RecordingsHandler.Finished(Error)) {
-              if (Error)
-                 Skins.Message(mtError, tr("Editing process failed!"));
-              else
-                 Skins.Message(mtInfo, tr("Editing process finished"));
-              }
+
+        // Check if recordings handler has finished:
+        bool Error = false;
+        if (RecordingsHandler.Finished(Error)) {
+           if (Error)
+              Skins.QueueMessage(mtError, tr("Editing process failed!"));
+           else
+              Skins.QueueMessage(mtInfo, tr("Editing process finished"));
            }
 
         // Change primary device:

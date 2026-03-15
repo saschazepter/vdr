@@ -2485,6 +2485,8 @@ Christoph Haubrich <christoph1.haubrich@arcor.de>
  for reporting a bug in estimating missing frames at the end of a recording
  for reporting a bug in the description of cSkinDisplayReplay::SetJump()
  for reporting that there can be frames larger than MAXFRAMESIZE
+ for reporting that finished editing processes are not reported immediately if a menu
+ is open
 
 Pekka Mauno <pekka.mauno@iki.fi>
  for fixing cSchedule::GetFollowingEvent() in case there is currently no present
