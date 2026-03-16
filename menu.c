@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.c 5.51 2026/03/13 11:11:21 kls Exp $
+ * $Id: menu.c 5.52 2026/03/16 20:23:33 kls Exp $
  */
 
 #include "menu.h"
@@ -2895,7 +2895,7 @@ eOSState cMenuRecordingEdit::ApplyChanges(void)
      eOSState  state = osUserRecRenamed;
      if (strcmp(Recording->Folder(), OldFolder))
         state = osUserRecMoved;
-     Recordings->TouchUpdate();
+     cRecordings::TouchUpdate();
      StateKey.Remove(Modified);
      return state;
      }
@@ -3436,6 +3436,7 @@ eOSState cMenuRecordings::Delete(void)
            recordingsStateKey.Remove();
            SetDeleted(Recording->FileName());
            Display();
+           cRecordings::TouchUpdate();
            if (!Count())
               return osUserRecEmpty;
            return osUserRecRemoved;
@@ -3470,6 +3471,7 @@ eOSState cMenuRecordings::Restore(void)
               recordingsStateKey.Remove();
               SetRecording(Recording->FileName());
               Display();
+              cRecordings::TouchUpdate();
               if (!Count())
                  return osUserRecEmpty;
               return osUserRecRemoved;
@@ -3500,6 +3502,7 @@ eOSState cMenuRecordings::Purge(void)
               cVideoDiskUsage::ForceCheck();
               recordingsStateKey.Remove();
               Display();
+              cRecordings::TouchUpdate();
               if (!Count())
                  return osUserRecEmpty;
               return osUserRecRemoved;
