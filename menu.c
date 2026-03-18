@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.c 5.52 2026/03/16 20:23:33 kls Exp $
+ * $Id: menu.c 5.53 2026/03/18 19:48:26 kls Exp $
  */
 
 #include "menu.h"
@@ -3194,6 +3194,8 @@ void cMenuRecordings::Set(bool Refresh)
      if (!CurrentRecording) {
         if (delRecMenu)
            CurrentRecording = *deletedName;
+        else if (!Setup.OpenRecMenuAtLastReplayed)
+           CurrentRecording = *fileName ? *fileName : cReplayControl::LastReplayed();
         else if (*fileName && strstr(fileName, DirectoryName()))
            CurrentRecording = *fileName;
         }
@@ -3232,7 +3234,7 @@ void cMenuRecordings::Set(bool Refresh)
                   if (strcmp(CurrentRecording, Recording->FileName()) == 0)
                      CurrentItem = LastDir ? LastDir : LastItem;
                   }
-               else if (!delRecMenu) {
+               else if (!delRecMenu && Setup.OpenRecMenuAtLastReplayed) {
                   time_t t = Recording->GetLastReplayTime();
                   if (t > LastReplayTime) {
                      LastReplayTime = t;

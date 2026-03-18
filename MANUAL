@@ -1357,6 +1357,11 @@ VDR version 2.6.6 added '/' to this list.
                          positioned at the sub folder (if any) containing that
                          recording. The most recently played recording can then be
                          reached by repeatedly pressing "Ok".
+                         Also, with this option set to 'yes', when opening any
+                         sub folder of the "Recordings" menu, the cursor will
+                         be automatically positioned on the most recently played
+                         recording in that folder, or the sub folder (if any)
+                         containing that recording.
 
   Emergency exit = yes   If, for some reason, a recording fails because the video
                          data stream is broken, or the CAM doesn't decrypt etc.,
