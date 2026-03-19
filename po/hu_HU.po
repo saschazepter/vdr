@@ -817,7 +817,7 @@ msgid "Edit recording"
 msgstr "Felvétel szerkesztése"
 
 msgid "Parental rating"
-msgstr ""
+msgstr "Korhatár"
 
 msgid "This recording is currently in use - no changes are possible!"
 msgstr "Ez a felvétel használatban van - módosítás nem lehetséges!"
@@ -871,7 +871,7 @@ msgid "Error while changing priority/lifetime!"
 msgstr "Hiba a prioritás/élettartam változtatása közben!"
 
 msgid "Error while changing parental rating!"
-msgstr ""
+msgstr "Hiba a korhatár-besorolás módosítása közben!"
 
 msgid "Error while changing folder/name!"
 msgstr "Hiba a könyvtár/név változtatása közben!"
