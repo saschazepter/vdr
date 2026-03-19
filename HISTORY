@@ -10322,3 +10322,4 @@ Video Disk Recorder Revision History
 - The function cRecordingInfo::SetData() is now deprecated. Use the explicit functions SetTitle(),
   SetShortText() and SetDescription() instead.
 - Finishd editing processes are now reported even if a menu is open.
+- Updated the Finnish OSD texts (thanks to Marko Mäkelä).
