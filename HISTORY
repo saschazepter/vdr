@@ -10323,3 +10323,4 @@ Video Disk Recorder Revision History
   SetShortText() and SetDescription() instead.
 - Finishd editing processes are now reported even if a menu is open.
 - Updated the Finnish OSD texts (thanks to Marko Mäkelä).
+- Updated the Polish OSD texts (thanks to Tomasz Maciej Nowak).

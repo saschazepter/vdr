@@ -812,7 +812,7 @@ msgid "Edit recording"
 msgstr "Edytuj nagranie"
 
 msgid "Parental rating"
-msgstr ""
+msgstr "Ograniczenie wiekowe"
 
 msgid "This recording is currently in use - no changes are possible!"
 msgstr "To nagranie jest w użyciu - zmiany nie są możliwe!"
@@ -866,7 +866,7 @@ msgid "Error while changing priority/lifetime!"
 msgstr "Błąd podczas zmiany priorytetu/czasu życia!"
 
 msgid "Error while changing parental rating!"
-msgstr ""
+msgstr "Błąd podczas zmiany ograniczenia wiekowego!"
 
 msgid "Error while changing folder/name!"
 msgstr "Błąd podczas zmiany katalogu/nazwy!"
@@ -1491,7 +1491,7 @@ msgid "Setup.Miscellaneous$Show channel names with source"
 msgstr "Pokaż nazwy kanałów ze źródłem"
 
 msgid "Setup.Miscellaneous$Open Recordings menu at last replayed"
-msgstr ""
+msgstr "Otwórz Nagrania na ostatnio granym"
 
 msgid "Setup.Miscellaneous$Emergency exit"
 msgstr "Wyjście awaryjne"
