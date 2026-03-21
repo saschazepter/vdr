@@ -121,7 +121,7 @@ VDR Plugin 'pictures' Revision History
 
 Fixed initializing cPictureControl.
 
-2026-03-12:
+2026-03-21: Version 2.8.1
 
 - Changed all calls to Skins.Message() that don't use mtStatus and don't check the return value to
   to Skins.QueueMessage(), to avoid invalid lock sequences.

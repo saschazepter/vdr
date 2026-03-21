@@ -10276,7 +10276,7 @@ Video Disk Recorder Revision History
 - When a replay ends by reaching the end of the recording, it automatically opens the "Recordings"
   menu at the location of that recording (suggested by Markus Ehrnsperger).
 
-2026-03-15:
+2026-03-21: Version 2.8.1
 
 - Removed leftover cMenuRecordings::path.
 - Fixed a typo in the German OSD texts (thanks to Stefan Hofmann).
