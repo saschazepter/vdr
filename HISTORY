@@ -10325,6 +10325,7 @@ Video Disk Recorder Revision History
 - Updated the Finnish OSD texts (thanks to Marko Mäkelä).
 - Updated the Polish OSD texts (thanks to Tomasz Maciej Nowak).
 
-2026-03-23:
+2026-03-27:
 
 - Updated the Italian OSD texts (thanks to Diego Pierotto).
+- Fixed setting the color buttons in the "Recordings" menu.
