@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: cutter.c 5.8 2026/02/01 21:37:31 kls Exp $
+ * $Id: cutter.c 5.9 2026/05/05 14:41:31 kls Exp $
  */
 
 #include "cutter.h"
@@ -586,8 +586,12 @@ bool cCuttingThread::ProcessSequence(int LastEndIndex, int BeginIndex, int EndIn
                      }
                   }
                }
-
-            FrameChecker.Check(Buffer, Length, Independent, Errors, Missing, Index == EndIndex - 1);
+            int Pid = patPmtParser.Vpid();
+            if (Pid == 0)
+               Pid = patPmtParser.Apids()[0];
+            if (Pid == 0)
+               Pid = patPmtParser.Dpids()[0];
+            FrameChecker.Check(Buffer, Length, Independent, Errors, Missing, Index == EndIndex - 1, Pid);
             }
          // Make sure there is enough disk space:
          AssertFreeDiskSpace(-1);

@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: remux.c 5.22 2025/12/30 13:48:59 kls Exp $
+ * $Id: remux.c 5.23 2026/05/05 14:41:31 kls Exp $
  */
 
 #include "remux.h"
@@ -157,13 +157,15 @@ int TsSync(const uchar *Data, int Length, const char *File, const char *Function
   return Skipped;
 }
 
-int64_t TsGetPts(const uchar *p, int l)
+int64_t TsGetPts(const uchar *p, int l, int Pid)
 {
   // Find the first packet with a PTS and use it:
   while (l > 0) {
-        const uchar *d = p;
-        if (TsPayloadStart(d) && TsGetPayload(&d) && PesHasPts(d))
-           return PesGetPts(d);
+        if (Pid < 0 || TsPid(p) == Pid) {
+           const uchar *d = p;
+           if (TsPayloadStart(d) && TsGetPayload(&d) && PesHasPts(d))
+              return PesGetPts(d);
+           }
         p += TS_SIZE;
         l -= TS_SIZE;
         }
@@ -2141,11 +2143,11 @@ void cFrameChecker::Reset(void)
   tsChecker->Reset();
 }
 
-bool cFrameChecker::Check(const uchar *Data, int Length, bool Independent, bool &Errors, bool &Missing, bool Final)
+bool cFrameChecker::Check(const uchar *Data, int Length, bool Independent, bool &Errors, bool &Missing, bool Final, int Pid)
 {
   tsChecker->CheckTs(Data, Length);
   Errors = tsChecker->NewErrors();
-  ptsChecker->AddPts(TsGetPts(Data, Length), Independent);
+  ptsChecker->AddPts(TsGetPts(Data, Length, Pid), Independent);
   if (Final)
      ptsChecker->Process();
   Missing = ptsChecker->NewMissing();

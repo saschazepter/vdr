@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: remux.h 5.11 2025/12/30 12:38:52 kls Exp $
+ * $Id: remux.h 5.12 2026/05/05 14:41:31 kls Exp $
  */
 
 #ifndef __REMUX_H
@@ -151,7 +151,7 @@ int TsSync(const uchar *Data, int Length, const char *File = NULL, const char *F
 
 // The following functions all take a pointer to a sequence of complete TS packets.
 
-int64_t TsGetPts(const uchar *p, int l);
+int64_t TsGetPts(const uchar *p, int l, int Pid = -1);
 int64_t TsGetDts(const uchar *p, int l);
 void TsSetPts(uchar *p, int l, int64_t Pts);
 void TsSetDts(uchar *p, int l, int64_t Dts);
@@ -534,11 +534,13 @@ public:
   cFrameChecker(void);
   ~cFrameChecker();
   void Reset(void);
-  bool Check(const uchar *Data, int Length, bool Independent, bool &Errors, bool &Missing, bool Final);
+  bool Check(const uchar *Data, int Length, bool Independent, bool &Errors, bool &Missing, bool Final, int Pid);
       ///< Check Length bytes of the given Data (which must be a complete frame), with
       ///< Independent telling whether this is an I-frame. Errors returns true if this frame
       ///< contains any TS errors, while Missing is true if there are any frames missing before
       ///< this one. Final must be set to true if this is the last frame to be checked, otherwise false.
+      ///< Pid is the PID to check, which is the VPID for a video recording, or the first APID or DPID
+      ///< for an audio recording.
       ///< Returns true if either Errors or Missing is true.
   int TotalErrors(void);
       ///< Returns the total number of all errors and missing frames detected in the data
