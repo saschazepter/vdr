@@ -10325,9 +10325,11 @@ Video Disk Recorder Revision History
 - Updated the Finnish OSD texts (thanks to Marko Mäkelä).
 - Updated the Polish OSD texts (thanks to Tomasz Maciej Nowak).
 
-2026-05-05:
+2026-05-07:
 
 - Updated the Italian OSD texts (thanks to Diego Pierotto).
 - Fixed setting the color buttons in the "Recordings" menu.
 - Fixed checking frames when cutting a recording, in case an I-frame contains no video data.
   APIVERSNUM is now 30013.
+- Fixed wrong start times in the timer given to calls to cStatus::TimerChange() (reported by
+  Robert Hannebauer).

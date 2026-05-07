@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.c 5.54 2026/03/27 20:50:18 kls Exp $
+ * $Id: menu.c 5.55 2026/05/07 09:53:44 kls Exp $
  */
 
 #include "menu.h"
@@ -1439,10 +1439,8 @@ eOSState cMenuTimers::Delete(void)
         Timers = cTimers::GetTimersWrite(timersStateKey);
         Timer = GetTimer();
         if (Timer) {
-           if (!Timer->Remote()) {
-              Timer->Skip();
-              cRecordControls::Process(Timers, time(NULL));
-              }
+           if (!Timer->Remote())
+              cRecordControls::Stop(Timer);
            if (HandleRemoteModifications(NULL, Timer)) {
               if (Timer->Remote())
                  Timers->SetSyncStateKey(StateKeySVDRPRemoteTimersPoll);
@@ -3353,12 +3351,13 @@ static bool TimerStillRecording(const char *FileName)
      if (Interface->Confirm(tr("Timer still recording - really delete?"))) {
         LOCK_TIMERS_WRITE;
         if (cTimer *Timer = rc->Timer()) {
-           Timer->Skip();
-           cRecordControls::Process(Timers, time(NULL));
+           cRecordControls::Stop(Timer);
            if (Timer->IsSingleEvent()) {
               Timers->Del(Timer);
               isyslog("deleted timer %s", *Timer->ToDescr());
               }
+           else
+              Timer->Skip();
            }
         }
      else
@@ -3378,7 +3377,6 @@ static bool TimerStillRecording(const char *FileName)
               LOCK_TIMERS_WRITE;
               if (cTimer *Timer = Timers->GetById(Id, Remote)) {
                  cTimer OldTimer = *Timer;
-                 Timer->Skip();
                  Timers->SetSyncStateKey(StateKeySVDRPRemoteTimersPoll);
                  if (Timer->IsSingleEvent()) {
                     if (HandleRemoteModifications(NULL, Timer))
@@ -3386,8 +3384,11 @@ static bool TimerStillRecording(const char *FileName)
                     else
                        return true; // error while deleting remote timer
                     }
-                 else if (!HandleRemoteModifications(Timer, &OldTimer))
-                    return true; // error while modifying remote timer
+                 else {
+                    Timer->Skip();
+                    if (!HandleRemoteModifications(Timer, &OldTimer))
+                       return true; // error while modifying remote timer
+                    }
                  }
               }
            else
@@ -5797,6 +5798,7 @@ void cRecordControls::Stop(cTimer *Timer)
   for (int i = 0; i < MAXRECORDCONTROLS; i++) {
       if (RecordControls[i]) {
          if (RecordControls[i]->Timer() == Timer) {
+            Timer->SetPending(false);
             DELETENULL(RecordControls[i]);
             ChangeState();
             break;

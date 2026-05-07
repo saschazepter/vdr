@@ -10,7 +10,7 @@
  * and interact with the Video Disk Recorder - or write a full featured
  * graphical interface that sits on top of an SVDRP connection.
  *
- * $Id: svdrp.c 5.17 2026/02/03 11:40:56 kls Exp $
+ * $Id: svdrp.c 5.18 2026/05/07 09:53:44 kls Exp $
  */
 
 #include "svdrp.h"
@@ -1548,10 +1548,8 @@ void cSVDRPServer::CmdDELT(const char *Option)
         LOCK_TIMERS_WRITE;
         Timers->SetExplicitModify();
         if (cTimer *Timer = Timers->GetById(strtol(Option, NULL, 10))) {
-           if (Timer->Recording()) {
-              Timer->Skip();
-              cRecordControls::Process(Timers, time(NULL));
-              }
+           if (Timer->Recording())
+              cRecordControls::Stop(Timer);
            Timer->TriggerRespawn();
            Timers->Del(Timer);
            Timers->SetModified();
