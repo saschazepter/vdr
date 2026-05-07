@@ -10333,3 +10333,5 @@ Video Disk Recorder Revision History
   APIVERSNUM is now 30013.
 - Fixed wrong start times in the timer given to calls to cStatus::TimerChange() (reported by
   Robert Hannebauer).
+- Fixed setting the texts on the color buttons in the "What's on..." menu in case the current
+  channel has no events.
