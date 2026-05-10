@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: dvbplayer.c 5.14 2026/02/16 11:03:12 kls Exp $
+ * $Id: dvbplayer.c 5.15 2026/05/10 14:55:09 kls Exp $
  */
 
 #include "dvbplayer.h"
@@ -489,6 +489,7 @@ void cDvbPlayer::Action(void)
   int SwitchToPlayFrame = 0;
   bool CutIn = false;
   bool AtLastMark = false;
+  int64_t EndPts = -1;
 
   if (pauseLive)
      Goto(0, true);
@@ -509,7 +510,7 @@ void cDvbPlayer::Action(void)
 
           if (playMode != pmStill && playMode != pmPause) {
              if (!readFrame && (replayFile || readIndex >= 0)) {
-                if (!nonBlockingFileReader->Reading() && !AtLastMark) {
+                if (!nonBlockingFileReader->Reading()) {
                    if (!SwitchToPlayFrame && (playMode == pmFast || (playMode == pmSlow && playDir == pdBackward))) {
                       uint16_t FileNumber;
                       off_t FileOffset;
@@ -590,8 +591,12 @@ void cDvbPlayer::Action(void)
                    if (r > 0) {
                       WaitingForData = false;
                       LastReadFrame = readIndex;
-                      uint32_t Pts = isPesRecording ? (PesHasPts(b) ? PesGetPts(b) : -1) : TsGetPts(b, r);
+                      int64_t Pts = isPesRecording ? (PesHasPts(b) ? PesGetPts(b) : -1) : TsGetPts(b, r);
                       readFrame = new cFrame(b, -r, ftUnknown, readIndex, Pts, readIndependent); // hands over b to the ringBuffer
+                      if (AtLastMark) {
+                         EndPts = Pts;
+                         AtLastMark = false;
+                         }
                       }
                    else if (r < 0) {
                       if (errno == EAGAIN)
@@ -681,19 +686,20 @@ void cDvbPlayer::Action(void)
                 playFrame = NULL;
                 p = NULL;
                 }
-             }
-          else {
-             if (AtLastMark) {
-                if (Setup.PauseAtLastMark) {
-                   DeviceFreeze();
-                   playMode = pmPause;
-                   AtLastMark = false;
+             if ((Setup.SkipEdited || Setup.PauseAtLastMark) && EndPts >= 0) {
+                if (PtsDiff(DeviceGetSTC(), EndPts) <= 0) {
+                   if (Setup.PauseAtLastMark) {
+                      DeviceFreeze();
+                      playMode = pmPause;
+                      }
+                   else
+                      break; // stop replay
+                   EndPts = -1;
                    }
-                else
-                   eof = true;
                 }
-             Sleep = true;
              }
+          else
+             Sleep = true;
 
           // Handle hitting begin/end of recording:
 

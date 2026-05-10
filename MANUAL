@@ -1195,10 +1195,7 @@ VDR version 2.6.6 added '/' to this list.
 
   Pause replay at last mark = no
                          If enabled, replay of a recording will go into Pause mode
-                         when it has reached the last "end" mark (if any). Note that
-                         the actual position at which the pause occurs may be a couple
-                         of frames before the last "end" mark, depending on how much
-                         data is buffered by your output device.
+                         when it has reached the last "end" mark (if any).
 
   Initial duration for adaptive skipping (s) = 120
                          Defines the number of seconds to jump from the current replay
