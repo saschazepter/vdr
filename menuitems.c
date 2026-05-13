@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menuitems.c 5.4 2025/06/18 20:22:10 kls Exp $
+ * $Id: menuitems.c 5.5 2026/05/13 21:30:25 kls Exp $
  */
 
 #include "menuitems.h"
@@ -406,6 +406,7 @@ cMenuEditStrItem::cMenuEditStrItem(const char *Name, char *Value, int Length, co
 
 cMenuEditStrItem::~cMenuEditStrItem()
 {
+  LeaveEditMode();
   delete[] valueUtf8;
   delete[] allowedUtf8;
   delete[] charMapUtf8;
@@ -432,12 +433,14 @@ void cMenuEditStrItem::EnterEditMode(void)
      Utf8ToArray(charMap, charMapUtf8, l);
      currentCharUtf8 = charMapUtf8;
      AdvancePos();
+     cRemote::SetInEditMode(true);
      }
 }
 
 void cMenuEditStrItem::LeaveEditMode(bool SaveValue)
 {
   if (valueUtf8) {
+     cRemote::SetInEditMode(false);
      if (SaveValue) {
         Utf8FromArray(valueUtf8, value, length);
         if (!keepSpace)

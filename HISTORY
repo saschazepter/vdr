@@ -10325,7 +10325,7 @@ Video Disk Recorder Revision History
 - Updated the Finnish OSD texts (thanks to Marko Mäkelä).
 - Updated the Polish OSD texts (thanks to Tomasz Maciej Nowak).
 
-2026-05-10:
+2026-05-13:
 
 - Updated the Italian OSD texts (thanks to Diego Pierotto).
 - Fixed setting the color buttons in the "Recordings" menu.
@@ -10336,3 +10336,5 @@ Video Disk Recorder Revision History
 - Fixed setting the texts on the color buttons in the "What's on..." menu in case the current
   channel has no events.
 - Fixed pausing replay at the last editing mark (reported by Andreas Baierl).
+- Added cRemote::InEditMode(), which allows remote controls to detect when a string item is
+  being edited.

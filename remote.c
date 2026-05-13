@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: remote.c 4.1 2019/05/13 13:01:44 kls Exp $
+ * $Id: remote.c 5.1 2026/05/13 21:30:25 kls Exp $
  */
 
 #include "remote.h"
@@ -34,6 +34,7 @@ cCondVar cRemote::keyPressed;
 const char *cRemote::keyMacroPlugin = NULL;
 const char *cRemote::callPlugin = NULL;
 bool cRemote::enabled = true;
+bool cRemote::inEditMode = false;
 time_t cRemote::lastActivity = 0;
 
 cRemote::cRemote(const char *Name)
