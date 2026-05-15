@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: remote.h 5.2 2026/05/13 21:30:25 kls Exp $
+ * $Id: remote.h 5.3 2026/05/15 09:42:55 kls Exp $
  */
 
 #ifndef __REMOTE_H
@@ -46,7 +46,7 @@ public:
   virtual bool Initialize(void);
   const char *Name(void) { return name; }
   static void SetLearning(cRemote *Learning) { learning = Learning; }
-  static bool IsLearning() { return learning != NULL; }
+  static bool IsLearning(void) { return learning != NULL; }
   static bool Enabled(void) { return enabled; }
   static void SetEnabled(bool Enabled) { enabled = Enabled; }
   static bool InEditMode(void) { return inEditMode; }

@@ -8,7 +8,7 @@
  *
  * parts of this file are derived from the OMS program.
  *
- * $Id: dvbspu.h 5.2 2026/03/09 20:08:29 kls Exp $
+ * $Id: dvbspu.h 5.3 2026/05/15 19:45:02 kls Exp $
  */
 
 #ifndef __DVBSPU_H
@@ -36,10 +36,10 @@ typedef struct sDvbSpuRect {
     sDvbSpuRect(void) {
         x1 = y1 = x2 = y2 = 0;
     };
-    int width() const {
+    int width(void) const {
         return x2 - x1 + 1;
     };
-    int height() const {
+    int height(void) const {
         return y2 - y1 + 1;
     };
 
@@ -140,7 +140,7 @@ class cDvbSpuDecoder:public cSpuDecoder {
     int CalcAreaBpp(cBitmap *fgbmp, cBitmap *bgbmp);
 
   public:
-    cDvbSpuDecoder();
+    cDvbSpuDecoder(void);
     ~cDvbSpuDecoder();
 
     int setTime(uint32_t pts);
