@@ -3513,6 +3513,7 @@ Matthias Senzel <matthias.senzel@t-online.de>
  edited
  for reporting that an additional color constant clrTranslucent would be useful to have
  the OSD's DrawText() functions actually set background pixels, which clrTransparent doesn't
+ for suggesting to add constants osUser11...osUser20
 
 Marek Nazarko <mnazarko@gmail.com>
  for translating OSD texts to the Polish language

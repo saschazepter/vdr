@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: osdbase.h 5.6 2026/05/20 09:43:03 kls Exp $
+ * $Id: osdbase.h 5.7 2026/05/20 09:55:51 kls Exp $
  */
 
 #ifndef __OSDBASE_H
@@ -45,6 +45,16 @@ enum eOSState { osUnknown,
                 osUser8,
                 osUser9,
                 osUser10,
+                osUser11,
+                osUser12,
+                osUser13,
+                osUser14,
+                osUser15,
+                osUser16,
+                osUser17,
+                osUser18,
+                osUser19,
+                osUser20,
               };
 
 class cOsdItem : public cListObject {

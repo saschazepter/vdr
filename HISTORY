@@ -10343,3 +10343,4 @@ Video Disk Recorder Revision History
   negative, it is now considered to be given as actual pixels.
   Plugins that reimplement cSkinDisplayMenu::SetTabs() need to adapt this function to handle
   negative values. See the default implementation in cSkinDisplayMenu::SetTabs().
+- Added constants osUser11...osUser20 (suggested by Matthias Senzel).
