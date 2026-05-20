@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: skins.c 5.6 2025/03/02 11:03:35 kls Exp $
+ * $Id: skins.c 5.7 2026/05/20 09:43:03 kls Exp $
  */
 
 #include "skins.h"
@@ -95,13 +95,17 @@ void cSkinDisplayMenu::SetMenuCategory(eMenuCategory MenuCategory)
 void cSkinDisplayMenu::SetTabs(int Tab1, int Tab2, int Tab3, int Tab4, int Tab5)
 {
   tabs[0] = 0;
-  tabs[1] = Tab1 ? tabs[0] + Tab1 : 0;
-  tabs[2] = Tab2 ? tabs[1] + Tab2 : 0;
-  tabs[3] = Tab3 ? tabs[2] + Tab3 : 0;
-  tabs[4] = Tab4 ? tabs[3] + Tab4 : 0;
-  tabs[5] = Tab5 ? tabs[4] + Tab5 : 0;
-  for (int i = 1; i < MaxTabs; i++)
-      tabs[i] *= AvgCharWidth();
+  tabs[1] = Tab1;
+  tabs[2] = Tab2;
+  tabs[3] = Tab3;
+  tabs[4] = Tab4;
+  tabs[5] = Tab5;
+  for (int i = 1; i < MaxTabs; i++) {
+      if (tabs[i]) {
+         tabs[i] *= (tabs[i] < 0) ? -1 : AvgCharWidth();
+         tabs[i] += tabs[i - 1];
+         }
+      }
 }
 
 void cSkinDisplayMenu::Scroll(bool Up, bool Page)

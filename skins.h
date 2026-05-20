@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: skins.h 5.11 2026/03/12 15:53:35 kls Exp $
+ * $Id: skins.h 5.12 2026/05/20 09:43:03 kls Exp $
  */
 
 #ifndef __SKINS_H
@@ -194,6 +194,8 @@ public:
   virtual void SetTabs(int Tab1, int Tab2 = 0, int Tab3 = 0, int Tab4 = 0, int Tab5 = 0);
        ///< Sets the tab columns to the given values, which are the number of
        ///< characters in each column.
+       ///< If any of the values Tab1...Tab5 is negative, it is considered to be given as
+       ///< actual pixels.
   virtual void SetMenuSortMode(eMenuSortMode MenuSortMode) {}
        ///< Sets the mode by which the items in this menu are sorted.
        ///< This is purely informative and may be used by a skin to display the

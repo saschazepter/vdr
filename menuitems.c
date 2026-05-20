@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menuitems.c 5.5 2026/05/13 21:30:25 kls Exp $
+ * $Id: menuitems.c 5.6 2026/05/20 09:43:03 kls Exp $
  */
 
 #include "menuitems.h"
@@ -1239,6 +1239,31 @@ cMenuSetupPage::cMenuSetupPage(void)
 void cMenuSetupPage::SetSection(const char *Section)
 {
   SetTitle(cString::sprintf("%s - %s", tr("Setup"), Section));
+}
+
+void cMenuSetupPage::Display(void)
+{
+  if (HasSubMenu()) {
+     SubMenu()->Display();
+     return;
+     }
+  int t = 0;
+  if (const cFont *Font = dynamic_cast<cSkinDisplayMenu *>(cSkinDisplay::Current())->GetTextAreaFont(false)) {
+     for (cOsdItem *item = First(); item; item = Next(item)) {
+         if (const char *Tab = strchr(item->Text(), '\t')) {
+            int l = Font->Width(cString(item->Text(), Tab));
+            if (l > t)
+               t = l;
+            }
+         }
+     if (t > 0) {
+        t += Font->Width("  "); // to have some distance between name and value
+        if (Font->Width("M") > 1)
+           t = -t;
+        }
+     }
+  SetCols(t);
+  cOsdMenu::Display();
 }
 
 eOSState cMenuSetupPage::ProcessKey(eKeys Key)

@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menuitems.h 5.2 2025/03/02 11:03:35 kls Exp $
+ * $Id: menuitems.h 5.3 2026/05/20 09:43:03 kls Exp $
  */
 
 #ifndef __MENUITEMS_H
@@ -236,6 +236,7 @@ protected:
   void SetupStore(const char *Name, int Value);
 public:
   cMenuSetupPage(void);
+  virtual void Display(void) override;
   virtual eOSState ProcessKey(eKeys Key) override;
   void SetPlugin(cPlugin *Plugin);
   };

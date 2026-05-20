@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: osdbase.h 5.5 2026/03/05 19:41:55 kls Exp $
+ * $Id: osdbase.h 5.6 2026/05/20 09:43:03 kls Exp $
  */
 
 #ifndef __OSDBASE_H
@@ -114,6 +114,10 @@ protected:
   cSkinDisplayMenu *DisplayMenu(void) { return displayMenu; }
   const char *hk(const char *s);
   void SetCols(int c0, int c1 = 0, int c2 = 0, int c3 = 0, int c4 = 0);
+       ///< Sets the column widths to the given values, which are the number of
+       ///< characters in each column.
+       ///< If any of the values c0...c4 is negative, it is considered to be given as
+       ///< actual pixels.
   void SetHasHotkeys(bool HasHotkeys = true);
   virtual void Clear(void);
   const char *Title(void) { return title; }

@@ -10325,7 +10325,7 @@ Video Disk Recorder Revision History
 - Updated the Finnish OSD texts (thanks to Marko Mäkelä).
 - Updated the Polish OSD texts (thanks to Tomasz Maciej Nowak).
 
-2026-05-13:
+2026-05-20:
 
 - Updated the Italian OSD texts (thanks to Diego Pierotto).
 - Fixed setting the color buttons in the "Recordings" menu.
@@ -10338,3 +10338,8 @@ Video Disk Recorder Revision History
 - Fixed pausing replay at the last editing mark (reported by Andreas Baierl).
 - Added cRemote::InEditMode(), which allows remote controls to detect when a string item is
   being edited.
+- The first column in the Setup menus is now sized dynamically, to avoid truncating texts.
+  If any of the values in a call to cOsdMenu::SetCols() or cSkinDisplayMenu::SetTabs() is
+  negative, it is now considered to be given as actual pixels.
+  Plugins that reimplement cSkinDisplayMenu::SetTabs() need to adapt this function to handle
+  negative values. See the default implementation in cSkinDisplayMenu::SetTabs().
