@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: thread.c 5.6 2025/12/02 21:14:44 kls Exp $
+ * $Id: thread.c 5.7 2026/05/23 21:03:38 kls Exp $
  */
 
 #include "thread.h"
@@ -125,7 +125,9 @@ void cCondVar::Wait(cMutex &Mutex)
      int locked = Mutex.locked;
      Mutex.locked = 0; // have to clear the locked count here, as pthread_cond_wait
                        // does an implicit unlock of the mutex
+     Mutex.lockThreadId = 0;
      pthread_cond_wait(&cond, &Mutex.mutex);
+     Mutex.lockThreadId = cThread::ThreadId(); // pthread_cond_wait re-locked the mutex without going through cMutex::Lock()
      Mutex.locked = locked;
      }
 }
@@ -140,8 +142,10 @@ bool cCondVar::TimedWait(cMutex &Mutex, int TimeoutMs)
         int locked = Mutex.locked;
         Mutex.locked = 0; // have to clear the locked count here, as pthread_cond_timedwait
                           // does an implicit unlock of the mutex.
+        Mutex.lockThreadId = 0;
         if (pthread_cond_timedwait(&cond, &Mutex.mutex, &abstime) == ETIMEDOUT)
            r = false;
+        Mutex.lockThreadId = cThread::ThreadId(); // pthread_cond_timedwait re-locked the mutex without going through cMutex::Lock()
         Mutex.locked = locked;
         }
      }
@@ -208,6 +212,7 @@ void cRwLock::Unlock(void)
 
 cMutex::cMutex(void)
 {
+  lockThreadId = 0;
   locked = 0;
   pthread_mutexattr_t attr;
   pthread_mutexattr_init(&attr);
@@ -222,14 +227,24 @@ cMutex::~cMutex()
 
 void cMutex::Lock(void)
 {
+  // PTHREAD_MUTEX_ERRORCHECK_NP rejects recursive entry from the same thread; handle the
+  // nested cMutexLock case (documented in thread.h) here, like cRwLock does below:
+  tThreadId ThisThreadId = cThread::ThreadId();
+  if (lockThreadId == ThisThreadId && locked) {
+     locked++;
+     return;
+     }
   pthread_mutex_lock(&mutex);
+  lockThreadId = ThisThreadId;
   locked++;
 }
 
 void cMutex::Unlock(void)
 {
-  if (!--locked)
+  if (!--locked) {
+     lockThreadId = 0;
      pthread_mutex_unlock(&mutex);
+     }
 }
 
 // --- cThread ---------------------------------------------------------------

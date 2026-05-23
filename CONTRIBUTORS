@@ -3895,3 +3895,6 @@ Andreas Baierl <post@andreasbaierl.de>
 
 Fabian Wolter <vdr-ml@fabian-wolter.de>
  for fixing a memory leak in cMark::Parse()
+
+Dirk Nehring <dnehring@gmx.net>
+ for improving recursive locking in cMutex

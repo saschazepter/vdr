@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: thread.h 4.6 2020/09/16 13:48:33 kls Exp $
+ * $Id: thread.h 5.1 2026/05/23 21:03:38 kls Exp $
  */
 
 #ifndef __THREAD_H
@@ -68,6 +68,7 @@ class cMutex {
   friend class cCondVar;
 private:
   pthread_mutex_t mutex;
+  tThreadId lockThreadId; // current holder, 0 == unlocked; lets Lock() short-circuit recursive entry
   int locked;
 public:
   cMutex(void);

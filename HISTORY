@@ -10325,7 +10325,7 @@ Video Disk Recorder Revision History
 - Updated the Finnish OSD texts (thanks to Marko Mäkelä).
 - Updated the Polish OSD texts (thanks to Tomasz Maciej Nowak).
 
-2026-05-22:
+2026-05-23:
 
 - Updated the Italian OSD texts (thanks to Diego Pierotto).
 - Fixed setting the color buttons in the "Recordings" menu.
@@ -10345,3 +10345,4 @@ Video Disk Recorder Revision History
   negative values. See the default implementation in cSkinDisplayMenu::SetTabs().
 - Added constants osUser11...osUser20 (suggested by Matthias Senzel).
 - Fixed displaying subtitles with the same PTS as the previous ones.
+- Improved recursive locking in cMutex (thanks to Dirk Nehring).
