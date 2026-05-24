@@ -10,7 +10,7 @@
  * and interact with the Video Disk Recorder - or write a full featured
  * graphical interface that sits on top of an SVDRP connection.
  *
- * $Id: svdrp.c 5.18 2026/05/07 09:53:44 kls Exp $
+ * $Id: svdrp.c 5.19 2026/05/24 11:40:29 kls Exp $
  */
 
 #include "svdrp.h"
@@ -166,17 +166,20 @@ bool cSocket::Listen(void)
      int Flags = fcntl(sock, F_GETFL, 0);
      if (Flags < 0) {
         LOG_ERROR;
+        Close();
         return false;
         }
      Flags |= O_NONBLOCK;
      if (fcntl(sock, F_SETFL, Flags) < 0) {
         LOG_ERROR;
+        Close();
         return false;
         }
      if (tcp) {
         // listen to the socket:
         if (listen(sock, 1) < 0) {
            LOG_ERROR;
+           Close();
            return false;
            }
         }
@@ -209,11 +212,13 @@ bool cSocket::Connect(const char *Address)
      int Flags = fcntl(sock, F_GETFL, 0);
      if (Flags < 0) {
         LOG_ERROR;
+        Close();
         return false;
         }
      Flags |= O_NONBLOCK;
      if (fcntl(sock, F_SETFL, Flags) < 0) {
         LOG_ERROR;
+        Close();
         return false;
         }
      dbgsvdrp("> %s:%d server connection established\n", Address, port);

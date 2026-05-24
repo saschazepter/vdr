@@ -10347,3 +10347,4 @@ Video Disk Recorder Revision History
 - Fixed displaying subtitles with the same PTS as the previous ones.
 - Improved recursive locking in cMutex (thanks to Dirk Nehring).
 - Made LastSignal in vdr.c 'volatile sig_atomic_t' (thanks to Dirk Nehring).
+- Added missing calls to Close() in cSocket (thanks to Dirk Nehring).
