@@ -22,7 +22,7 @@
  *
  * The project's page is at https://www.tvdr.de
  *
- * $Id: vdr.c 5.28 2026/03/15 10:46:04 kls Exp $
+ * $Id: vdr.c 5.29 2026/05/24 11:20:41 kls Exp $
  */
 
 #include <getopt.h>
@@ -93,7 +93,7 @@
 
 #define EXIT(v) { ShutdownHandler.Exit(v); goto Exit; }
 
-static int LastSignal = 0;
+static volatile sig_atomic_t LastSignal = 0;
 
 static bool SetUser(const char *User, bool UserDump)
 {
