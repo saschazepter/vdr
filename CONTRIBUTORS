@@ -3435,6 +3435,8 @@ Stefan Hofmann <stefan.hofmann@t-online.de>
  recordings
  for suggesting to allow modifying the parental rating in the "Edit recording" menu
  for improving handling repeated keys in cRemote
+ for adding an upper limit of 2000 to "Setup/Miscellaneous/Remote control repeat delay" and
+ "Setup/Miscellaneous/Remote control repeat delta"
 
 Stefan Blochberger <Stefan.Blochberger@gmx.de>
  for suggesting to automatically display the progress display whenever replay of a

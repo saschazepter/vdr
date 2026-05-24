@@ -10350,3 +10350,5 @@ Video Disk Recorder Revision History
 - Added missing calls to Close() in cSocket (thanks to Dirk Nehring).
 - Increased ERROR_HANDLING_DELTA to 5 in cutter.c (suggested by Matthias Senzel).
 - Improved handling repeated keys in cRemote (thanks to Stefan Hofmann).
+- Added an upper limit of 2000 to "Setup/Miscellaneous/Remote control repeat delay" and
+  "Setup/Miscellaneous/Remote control repeat delta" (thanks to Stefan Hofmann).
