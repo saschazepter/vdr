@@ -10352,3 +10352,5 @@ Video Disk Recorder Revision History
 - Improved handling repeated keys in cRemote (thanks to Stefan Hofmann).
 - Added an upper limit of 2000 to "Setup/Miscellaneous/Remote control repeat delay" and
   "Setup/Miscellaneous/Remote control repeat delta" (thanks to Stefan Hofmann).
+- Changed incrementing PanicLevel, since '++' in this place is deprecated in C++20 (thanks to
+  Dirk Nehring).

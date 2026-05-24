@@ -3904,3 +3904,4 @@ Dirk Nehring <dnehring@gmx.net>
  for improving recursive locking in cMutex
  for making LastSignal in vdr.c 'volatile sig_atomic_t'
  for adding missing calls to Close() in cSocket
+ for changing incrementing PanicLevel, since '++' in this place is deprecated in C++20

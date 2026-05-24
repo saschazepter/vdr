@@ -22,7 +22,7 @@
  *
  * The project's page is at https://www.tvdr.de
  *
- * $Id: vdr.c 5.29 2026/05/24 11:20:41 kls Exp $
+ * $Id: vdr.c 5.30 2026/05/24 20:32:35 kls Exp $
  */
 
 #include <getopt.h>
@@ -191,8 +191,9 @@ static void Watchdog(int signum)
   // Something terrible must have happened that prevented the 'alarm()' from
   // being called in time, so let's get out of here:
   static volatile sig_atomic_t PanicLevel = 0;
-  switch (PanicLevel++) {
-    case 0:  signal(SIGALRM, Watchdog);
+  switch (PanicLevel) { // can't use '++' here - deprecated in C++20 (P1152R4)
+    case 0:  PanicLevel = 1;
+             signal(SIGALRM, Watchdog);
              alarm(EXITWATCHDOG);
              esyslog("PANIC: watchdog timer expired - exit()!");
 #ifdef SDNOTIFY
@@ -200,7 +201,8 @@ static void Watchdog(int signum)
 #endif
              exit(1); // let's try this nicely
              break;
-    case 1:  signal(SIGALRM, Watchdog);
+    case 1:  PanicLevel = 2;
+             signal(SIGALRM, Watchdog);
              alarm(EXITWATCHDOG / 4);
              esyslog("PANIC: watchdog timer expired - _exit()!");
              // fall through
