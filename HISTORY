@@ -10348,3 +10348,4 @@ Video Disk Recorder Revision History
 - Improved recursive locking in cMutex (thanks to Dirk Nehring).
 - Made LastSignal in vdr.c 'volatile sig_atomic_t' (thanks to Dirk Nehring).
 - Added missing calls to Close() in cSocket (thanks to Dirk Nehring).
+- Increased ERROR_HANDLING_DELTA to 5 in cutter.c (suggested by Matthias Senzel).

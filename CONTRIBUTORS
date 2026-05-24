@@ -3514,6 +3514,7 @@ Matthias Senzel <matthias.senzel@t-online.de>
  for reporting that an additional color constant clrTranslucent would be useful to have
  the OSD's DrawText() functions actually set background pixels, which clrTransparent doesn't
  for suggesting to add constants osUser11...osUser20
+ for suggesting to increase ERROR_HANDLING_DELTA to 5 in cutter.c
 
 Marek Nazarko <mnazarko@gmail.com>
  for translating OSD texts to the Polish language

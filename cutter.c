@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: cutter.c 5.9 2026/05/05 14:41:31 kls Exp $
+ * $Id: cutter.c 5.10 2026/05/24 11:50:34 kls Exp $
  */
 
 #include "cutter.h"
@@ -635,7 +635,7 @@ bool cCuttingThread::ProcessSequence(int LastEndIndex, int BeginIndex, int EndIn
   return true;
 }
 
-#define ERROR_HANDLING_DELTA 1 // seconds between handling errors
+#define ERROR_HANDLING_DELTA 5 // seconds between handling errors
 
 void cCuttingThread::HandleErrors(bool Force)
 {
