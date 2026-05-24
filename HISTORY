@@ -10325,7 +10325,7 @@ Video Disk Recorder Revision History
 - Updated the Finnish OSD texts (thanks to Marko Mäkelä).
 - Updated the Polish OSD texts (thanks to Tomasz Maciej Nowak).
 
-2026-05-23:
+2026-05-24:
 
 - Updated the Italian OSD texts (thanks to Diego Pierotto).
 - Fixed setting the color buttons in the "Recordings" menu.
@@ -10346,3 +10346,4 @@ Video Disk Recorder Revision History
 - Added constants osUser11...osUser20 (suggested by Matthias Senzel).
 - Fixed displaying subtitles with the same PTS as the previous ones.
 - Improved recursive locking in cMutex (thanks to Dirk Nehring).
+- Made LastSignal in vdr.c 'volatile sig_atomic_t' (thanks to Dirk Nehring).
