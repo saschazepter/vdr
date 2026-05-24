@@ -3434,6 +3434,7 @@ Stefan Hofmann <stefan.hofmann@t-online.de>
  for suggesting to implement automatically updating items in the Recordings menu for ongoing
  recordings
  for suggesting to allow modifying the parental rating in the "Edit recording" menu
+ for improving handling repeated keys in cRemote
 
 Stefan Blochberger <Stefan.Blochberger@gmx.de>
  for suggesting to automatically display the progress display whenever replay of a

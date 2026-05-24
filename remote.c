@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: remote.c 5.1 2026/05/13 21:30:25 kls Exp $
+ * $Id: remote.c 5.2 2026/05/24 20:04:42 kls Exp $
  */
 
 #include "remote.h"
@@ -84,8 +84,11 @@ bool cRemote::Put(eKeys Key, bool AtFront)
 {
   if (Key != kNone) {
      cMutexLock MutexLock(&mutex);
-     if (in != out && (keys[out] & k_Repeat) && (Key & k_Release))
-        Clear();
+     // In case of a release remove repeat from queue:
+     if (in != out && (Key & k_Release) && (keys[((in > 0) ? in : MaxKeys) - 1] | k_Release) == (Key | k_Repeat)) {
+        if (--in < 0)
+           in = MaxKeys - 1;
+        }
      int d = out - in;
      if (d <= 0)
         d = MaxKeys + d;
@@ -96,6 +99,8 @@ bool cRemote::Put(eKeys Key, bool AtFront)
            keys[out] = Key;
            }
         else {
+           if (in != out && (Key & k_Repeat) && (keys[((in > 0) ? in : MaxKeys) - 1] | k_Repeat) == Key)
+              return true; // queue only one repeat!
            keys[in] = Key;
            if (++in >= MaxKeys)
               in = 0;

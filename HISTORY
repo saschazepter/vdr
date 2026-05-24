@@ -10349,3 +10349,4 @@ Video Disk Recorder Revision History
 - Made LastSignal in vdr.c 'volatile sig_atomic_t' (thanks to Dirk Nehring).
 - Added missing calls to Close() in cSocket (thanks to Dirk Nehring).
 - Increased ERROR_HANDLING_DELTA to 5 in cutter.c (suggested by Matthias Senzel).
+- Improved handling repeated keys in cRemote (thanks to Stefan Hofmann).
