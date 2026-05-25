@@ -2886,6 +2886,7 @@ Winfried Köhler <nvdec@quantentunnel.de>
  is the preprocessor's default
  for suggesting a fix for handling negative values in cSource::Position() on
  systems where 'int' is 64 bit
+ for extending the "Channel selection" section in PLUGINS.html
 
 Hans-Werner Hilse <hilse@web.de>
  for adding the command line option --userdump to enable core dumps in case VDR

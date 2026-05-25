@@ -1886,6 +1886,23 @@ These functions will be called with the desired source or channel and shall retu
 this device can provide the requested source or channel and whether tuning to it was successful,
 respectively.
 <p>
+If this device should be able to receive multiple channels from a given source in parallel,
+two further functions shall be implemented as well.
+Typically, those are multiplexed channels from a satellite transponder or inside a bouquet from
+aerial tv transmission.
+
+<p><table><tr><td class="code"><pre>
+virtual bool IsTunedToTransponder(const cChannel *Channel) const;
+virtual bool MaySwitchTransponder(const cChannel *Channel) const;
+</pre></td></tr></table><p>
+
+To implement power saving features for idling devices, overload the following class member:
+
+<p><table><tr><td class="code"><pre>
+virtual void SetPowerSaveMode(bool On);
+</pre></td></tr></table><p>
+
+<p>
 <b>Audio selection</b>
 <p>
 If the device can provide more than a single audio track, it can implement the

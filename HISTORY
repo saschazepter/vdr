@@ -10325,7 +10325,7 @@ Video Disk Recorder Revision History
 - Updated the Finnish OSD texts (thanks to Marko Mäkelä).
 - Updated the Polish OSD texts (thanks to Tomasz Maciej Nowak).
 
-2026-05-24:
+2026-05-25:
 
 - Updated the Italian OSD texts (thanks to Diego Pierotto).
 - Fixed setting the color buttons in the "Recordings" menu.
@@ -10354,3 +10354,4 @@ Video Disk Recorder Revision History
   "Setup/Miscellaneous/Remote control repeat delta" (thanks to Stefan Hofmann).
 - Changed incrementing PanicLevel, since '++' in this place is deprecated in C++20 (thanks to
   Dirk Nehring).
+- Extended the "Channel selection" section in PLUGINS.html (thanks to Winfried Köhler).
