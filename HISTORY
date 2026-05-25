@@ -10357,3 +10357,4 @@ Video Disk Recorder Revision History
 - Extended the "Channel selection" section in PLUGINS.html (thanks to Winfried Köhler).
 - Now logging an error if the format string in a call to one of the *syslog() macros is too
   long (suggested by Markus Ehrnsperger).
+- Improved lirc.c (thanks to Jörg Riechardt and Stefan Herdler).

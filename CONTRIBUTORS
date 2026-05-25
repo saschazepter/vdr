@@ -3723,6 +3723,7 @@ Stefan Herdler <herdler@gmx.de>
  for making the Watchdog call _exit() if exit() fails
  for reporting that cEITScanner::Process() calls Skins.Message(), which may cause an
  invalid lock sequence in case the skin's SetMessage() function sets locks
+ for improving lirc.c
 
 Tobias Faust <tobias.faust@gmx.de>
  for the original "jumpingseconds" patch
@@ -3908,3 +3909,6 @@ Dirk Nehring <dnehring@gmx.net>
  for making LastSignal in vdr.c 'volatile sig_atomic_t'
  for adding missing calls to Close() in cSocket
  for changing incrementing PanicLevel, since '++' in this place is deprecated in C++20
+
+Jörg Riechardt <J.Riechardt@gmx.de>
+ for improving lirc.c

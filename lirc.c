@@ -6,7 +6,7 @@
  *
  * LIRC support added by Carsten Koch <Carsten.Koch@icem.de>  2000-06-16.
  *
- * $Id: lirc.c 5.3 2025/03/02 11:03:35 kls Exp $
+ * $Id: lirc.c 5.4 2026/05/25 12:33:18 kls Exp $
  */
 
 #include "lirc.h"
@@ -23,6 +23,7 @@
 #endif
 
 #define RECONNECTDELAY 3000 // ms
+#define LIRC_REPEAT_TIMEOUT 250 // ms (sufficient to compensate 1 lost transmission)
 
 class cLircUsrRemote : public cLircRemote {
 private:
@@ -105,10 +106,8 @@ void cLircUsrRemote::Action(void)
 {
   cTimeMs FirstTime;
   cTimeMs LastTime;
-  cTimeMs ThisTime;
   char buf[LIRC_BUFFER_SIZE];
   char LastKeyName[LIRC_KEY_BUF] = "";
-  bool pressed = false;
   bool repeat = false;
   int timeout = -1;
 
@@ -131,7 +130,7 @@ void cLircUsrRemote::Action(void)
                  }
            }
 
-        if (ready && ret > 0) {
+        else if (ready) {
            buf[ret - 1] = 0;
            int count;
            char KeyName[LIRC_KEY_BUF];
@@ -139,39 +138,29 @@ void cLircUsrRemote::Action(void)
               esyslog("ERROR: unparsable lirc command: %s", buf);
               continue;
               }
-           int Delta = ThisTime.Elapsed(); // the time between two subsequent LIRC events
-           ThisTime.Set();
            if (count == 0) { // new key pressed
-              if (strcmp(KeyName, LastKeyName) == 0 && FirstTime.Elapsed() < (uint)Setup.RcRepeatDelay)
-                 continue; // skip keys coming in too fast
               if (repeat)
                  Put(LastKeyName, false, true); // generated release for previous repeated key
               strn0cpy(LastKeyName, KeyName, sizeof(LastKeyName));
-              pressed = true;
-              repeat = false;
               FirstTime.Set();
+              repeat = false;
               timeout = -1;
               }
-           else if (FirstTime.Elapsed() < (uint)Setup.RcRepeatDelay)
-              continue; // repeat function kicks in after a short delay
-           else if (LastTime.Elapsed() < (uint)Setup.RcRepeatDelta)
-              continue; // skip same keys coming in too fast
-           else {
-              pressed = true;
+           else { // repeat of a continuously pressed key
+              if (FirstTime.Elapsed() < (uint)Setup.RcRepeatDelay)
+                 continue; // repeat function kicks in after a short delay
+              if (LastTime.Elapsed() < (uint)Setup.RcRepeatDelta)
+                 continue; // skip identical keys coming in too fast
               repeat = true;
-              timeout = Delta * 3 / 2;
+              timeout = LIRC_REPEAT_TIMEOUT;
               }
-           if (pressed) {
-              LastTime.Set();
-              Put(KeyName, repeat);
-              }
+           LastTime.Set();
+           Put(KeyName, repeat);
            }
-        else {
-           if (pressed && repeat) // the last one was a repeat, so let's generate a release
+        else { // no key pressed within timeout
+           if (repeat) // the last one was a repeat, so let's generate a release
               Put(LastKeyName, false, true);
-           pressed = false;
            repeat = false;
-           *LastKeyName = 0;
            timeout = -1;
            }
         }
