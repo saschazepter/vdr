@@ -10358,3 +10358,4 @@ Video Disk Recorder Revision History
 - Now logging an error if the format string in a call to one of the *syslog() macros is too
   long (suggested by Markus Ehrnsperger).
 - Improved lirc.c (thanks to Jörg Riechardt and Stefan Herdler).
+- Fixed skipping forward to the next error if that error is exactly on the next I-frame.

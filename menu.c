@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.c 5.57 2026/05/24 20:15:53 kls Exp $
+ * $Id: menu.c 5.58 2026/05/25 17:23:02 kls Exp $
  */
 
 #include "menu.h"
@@ -6369,6 +6369,10 @@ void cReplayControl::ErrorJump(bool Forward)
            int Offset = 0;
            for (int i = 0; i < NumErrors; i++) {
                int Position = Errors->At(i);
+               if (Offset && Position == Current + Offset) {
+                  Goto(Position, true); // Position is exactly on the next I-frame
+                  return;
+                  }
                if (Position > Current + Offset) {
                   int NextIFrame = SkipFrames(Position - Current) + Offset; // this takes us to the I-frame at or right after Position
                   if (NextIFrame > Position) {
