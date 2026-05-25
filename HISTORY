@@ -10355,3 +10355,5 @@ Video Disk Recorder Revision History
 - Changed incrementing PanicLevel, since '++' in this place is deprecated in C++20 (thanks to
   Dirk Nehring).
 - Extended the "Channel selection" section in PLUGINS.html (thanks to Winfried Köhler).
+- Now logging an error if the format string in a call to one of the *syslog() macros is too
+  long (suggested by Markus Ehrnsperger).

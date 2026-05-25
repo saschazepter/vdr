@@ -2622,6 +2622,8 @@ Markus Ehrnsperger <markus.ehrnsperger@googlemail.com>
  for storing language of title and short text of EPG events in cEvent
  for suggesting to automatically open the "Recordings" menu when a replay ends
  for fixing handling calls to cRecordings::DelByName() with extensions other than '.rec'
+ for suggesting to log an error if the format string in a call to one of the *syslog()
+ macros is too long
 
 Werner Färber <w.faerber@gmx.de>
  for reporting a bug in handling the cPluginManager::Active() result when pressing
