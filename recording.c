@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: recording.c 5.57 2026/03/14 15:20:49 kls Exp $
+ * $Id: recording.c 5.58 2026/05/28 13:31:42 kls Exp $
  */
 
 #include "recording.h"
@@ -1684,6 +1684,8 @@ void cVideoDirectoryScannerThread::ScanVideoDir(const char *DirName, int LinkLev
                        r->IsOnVideoDirectoryFileSystem(); // initializes the isOnVideoDirectoryFileSystem member
                        if (Recordings == deletedRecordings)
                           r->SetDeleted();
+                       if (initial)
+                          ClrRecordingTimerId(r->FileName());
                        Recordings->Add(r);
                        count = recordings->Count();
                        }
@@ -3639,6 +3641,19 @@ cString GetRecordingTimerId(const char *Directory)
      fclose(f);
      }
   return Id;
+}
+
+void ClrRecordingTimerId(const char *Directory)
+{
+  cString TimerId = GetRecordingTimerId(Directory);
+  if (*TimerId) {
+     if (const char *p = strchr(TimerId, '@')) {
+        if (strcmp(p + 1, Setup.SVDRPHostName) == 0) {
+           dsyslog("found stale recording timer id %s", *TimerId);
+           SetRecordingTimerId(Directory, NULL);
+           }
+        }
+     }
 }
 
 // --- Disk space calculation for editing ------------------------------------

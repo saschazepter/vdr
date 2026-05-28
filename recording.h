@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: recording.h 5.27 2026/03/14 15:50:43 kls Exp $
+ * $Id: recording.h 5.28 2026/05/28 13:31:42 kls Exp $
  */
 
 #ifndef __RECORDING_H
@@ -620,6 +620,7 @@ void IncRecordingsSortMode(const char *Directory);
 
 void SetRecordingTimerId(const char *Directory, const char *TimerId);
 cString GetRecordingTimerId(const char *Directory);
+void ClrRecordingTimerId(const char *Directory);
 
 int FileSizeMBafterEdit(const char *FileName);
 bool EnoughFreeDiskSpaceForEdit(const char *FileName);

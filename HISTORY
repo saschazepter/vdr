@@ -10325,7 +10325,7 @@ Video Disk Recorder Revision History
 - Updated the Finnish OSD texts (thanks to Marko Mäkelä).
 - Updated the Polish OSD texts (thanks to Tomasz Maciej Nowak).
 
-2026-05-25:
+2026-05-28:
 
 - Updated the Italian OSD texts (thanks to Diego Pierotto).
 - Fixed setting the color buttons in the "Recordings" menu.
@@ -10359,3 +10359,4 @@ Video Disk Recorder Revision History
   long (suggested by Markus Ehrnsperger).
 - Improved lirc.c (thanks to Jörg Riechardt and Stefan Herdler).
 - Fixed skipping forward to the next error if that error is exactly on the next I-frame.
+- Stale .timer files are now deleted when VDR is restarted (reported by Stefan Hofmann).
