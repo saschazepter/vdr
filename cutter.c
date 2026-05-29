@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: cutter.c 5.10 2026/05/24 11:50:34 kls Exp $
+ * $Id: cutter.c 5.11 2026/05/29 10:10:01 kls Exp $
  */
 
 #include "cutter.h"
@@ -613,7 +613,6 @@ bool cCuttingThread::ProcessSequence(int LastEndIndex, int BeginIndex, int EndIn
             error = "toIndex";
             return false;
             }
-         frameErrors = FrameChecker.TotalErrors();
          HandleErrors();
          // Write data:
          if (toFile->Write(Buffer, Length) < 0) {
@@ -632,6 +631,7 @@ bool cCuttingThread::ProcessSequence(int LastEndIndex, int BeginIndex, int EndIn
       else
          return false;
       }
+  frameErrors += FrameChecker.TotalErrors();
   return true;
 }
 
