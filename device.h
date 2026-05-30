@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: device.h 5.9 2026/03/02 14:03:51 kls Exp $
+ * $Id: device.h 5.10 2026/05/30 12:27:12 kls Exp $
  */
 
 #ifndef __DEVICE_H
@@ -405,7 +405,7 @@ public:
 
 private:
   mutable cMutex mutexPids;
-  virtual void Action(void);
+  virtual void Action(void) override;
 protected:
   enum ePidType { ptAudio, ptVideo, ptPcr, ptTeletext, ptDolby, ptOther };
   class cPidHandle {

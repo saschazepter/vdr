@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.h 5.12 2026/03/05 19:41:55 kls Exp $
+ * $Id: menu.h 5.13 2026/05/30 12:27:12 kls Exp $
  */
 
 #ifndef __MENU_H
@@ -157,7 +157,7 @@ public:
   virtual ~cDisplayVolume() override;
   static cDisplayVolume *Create(void);
   static void Process(eKeys Key);
-  eOSState ProcessKey(eKeys Key);
+  virtual eOSState ProcessKey(eKeys Key) override;
   };
 
 class cDisplayTracks : public cOsdObject {
@@ -175,7 +175,7 @@ public:
   static bool IsOpen(void) { return currentDisplayTracks != NULL; }
   static cDisplayTracks *Create(void);
   static void Process(eKeys Key);
-  eOSState ProcessKey(eKeys Key);
+  virtual eOSState ProcessKey(eKeys Key) override;
   };
 
 class cDisplaySubtitleTracks : public cOsdObject {
@@ -193,7 +193,7 @@ public:
   static bool IsOpen(void) { return currentDisplayTracks != NULL; }
   static cDisplaySubtitleTracks *Create(void);
   static void Process(eKeys Key);
-  eOSState ProcessKey(eKeys Key);
+  virtual eOSState ProcessKey(eKeys Key) override;
   };
 
 cOsdObject *CamControl(void);

@@ -10363,3 +10363,4 @@ Video Disk Recorder Revision History
 - Fixed the total error count in case of several edited sequences that contain errors
   (reported by Stefan Hofmann).
 - Fixed a precedence problem in cLircDevRemote::Action().
+- Added missing 'override' keywords.

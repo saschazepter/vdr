@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: config.h 5.43 2026/05/05 14:41:31 kls Exp $
+ * $Id: config.h 5.44 2026/05/30 12:27:12 kls Exp $
  */
 
 #ifndef __CONFIG_H
@@ -119,7 +119,7 @@ template<class T> class cConfig : public cList<T> {
 private:
   char *fileName;
   bool allowComments;
-  void Clear(void)
+  virtual void Clear(void) override
   {
     free(fileName);
     fileName = NULL;
@@ -221,7 +221,7 @@ private:
 public:
   cNestedItemList(void);
   virtual ~cNestedItemList() override;
-  void Clear(void);
+  virtual void Clear(void) override;
   bool Load(const char *FileName);
   bool Save(void);
   };

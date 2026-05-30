@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: skinlcars.c 5.10 2026/02/16 14:58:07 kls Exp $
+ * $Id: skinlcars.c 5.11 2026/05/30 12:27:12 kls Exp $
  */
 
 // "Star Trek: The Next Generation"(R) is a registered trademark of Paramount Pictures,
@@ -759,8 +759,8 @@ public:
   virtual void SetEvent(const cEvent *Event) override;
   virtual void SetRecording(const cRecording *Recording) override;
   virtual void SetText(const char *Text, bool FixedFont) override;
-  virtual int GetTextAreaWidth(void) const;
-  virtual const cFont *GetTextAreaFont(bool FixedFont) const;
+  virtual int GetTextAreaWidth(void) const override;
+  virtual const cFont *GetTextAreaFont(bool FixedFont) const override;
   virtual void Flush(void) override;
   };
 

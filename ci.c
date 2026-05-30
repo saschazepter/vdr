@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: ci.c 5.2 2025/03/02 11:03:35 kls Exp $
+ * $Id: ci.c 5.3 2026/05/30 12:27:12 kls Exp $
  */
 
 #include "ci.h"
@@ -1411,7 +1411,7 @@ public:
   cCiMMI(uint16_t SessionId, cCiTransportConnection *Tc);
   virtual ~cCiMMI() override;
   virtual void Process(int Length = 0, const uint8_t *Data = NULL) override;
-  virtual bool HasUserIO(void) { return menu || enquiry; }
+  virtual bool HasUserIO(void) override { return menu || enquiry; }
   cCiMenu *Menu(bool Clear = false);
   cCiEnquiry *Enquiry(bool Clear = false);
   void SendMenuAnswer(uint8_t Selection);
@@ -1741,7 +1741,7 @@ cCiResourceHandler::~cCiResourceHandler()
 
 class cCiDefaultResourceHandler : public cCiResourceHandler {
 public:
-  virtual const uint32_t *ResourceIds(void) const;
+  virtual const uint32_t *ResourceIds(void) const override;
   virtual cCiSession *GetNewCiSession(uint32_t ResourceId, uint16_t SessionId, cCiTransportConnection *Tc) override;
   };
 

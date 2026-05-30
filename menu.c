@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: menu.c 5.58 2026/05/25 17:23:02 kls Exp $
+ * $Id: menu.c 5.59 2026/05/30 12:27:12 kls Exp $
  */
 
 #include "menu.h"
@@ -60,7 +60,7 @@ protected:
   virtual void Set(void) override;
 public:
   cMenuEditCaItem(const char *Name, int *Value);
-  eOSState ProcessKey(eKeys Key);
+  virtual eOSState ProcessKey(eKeys Key) override;
   };
 
 cMenuEditCaItem::cMenuEditCaItem(const char *Name, int *Value)
@@ -103,7 +103,7 @@ protected:
   virtual void Set(void) override;
 public:
   cMenuEditSrcItem(const char *Name, int *Value);
-  eOSState ProcessKey(eKeys Key);
+  virtual eOSState ProcessKey(eKeys Key) override;
   };
 
 cMenuEditSrcItem::cMenuEditSrcItem(const char *Name, int *Value)

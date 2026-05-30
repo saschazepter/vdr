@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: skins.h 5.12 2026/05/20 09:43:03 kls Exp $
+ * $Id: skins.h 5.13 2026/05/30 12:27:12 kls Exp $
  */
 
 #ifndef __SKINS_H
@@ -216,7 +216,7 @@ public:
        ///< Clears the entire central area of the menu.
   virtual void SetTitle(const char *Title) = 0;
        ///< Sets the title of this menu to Title.
-  virtual void SetButtons(const char *Red, const char *Green = NULL, const char *Yellow = NULL, const char *Blue = NULL) = 0;
+  virtual void SetButtons(const char *Red, const char *Green = NULL, const char *Yellow = NULL, const char *Blue = NULL) override = 0;
        ///< Sets the color buttons to the given strings. If any of the values is
        ///< NULL, any previous text must be removed from the related button.
   virtual void SetMessage(eMessageType Type, const char *Text) override = 0;

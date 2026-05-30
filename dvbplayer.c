@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: dvbplayer.c 5.15 2026/05/10 14:55:09 kls Exp $
+ * $Id: dvbplayer.c 5.16 2026/05/30 12:27:12 kls Exp $
  */
 
 #include "dvbplayer.h"
@@ -285,7 +285,7 @@ public:
   int SkipFrames(int Frames);
   void SkipSeconds(int Seconds);
   void Goto(int Position, bool Still = false);
-  virtual double FramesPerSecond(void) { return framesPerSecond; }
+  virtual double FramesPerSecond(void) override { return framesPerSecond; }
   virtual void SetAudioTrack(eTrackType Type, const tTrackId *TrackId) override;
   virtual const cErrors *GetErrors(void) override;
   virtual bool GetIndex(int &Current, int &Total, bool SnapToIFrame = false) override;

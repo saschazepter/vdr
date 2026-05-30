@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: osdbase.h 5.7 2026/05/20 09:55:51 kls Exp $
+ * $Id: osdbase.h 5.8 2026/05/30 12:27:12 kls Exp $
  */
 
 #ifndef __OSDBASE_H
@@ -129,7 +129,7 @@ protected:
        ///< If any of the values c0...c4 is negative, it is considered to be given as
        ///< actual pixels.
   void SetHasHotkeys(bool HasHotkeys = true);
-  virtual void Clear(void);
+  virtual void Clear(void) override;
   const char *Title(void) { return title; }
   int VisibleItem(int Idx); ///< Returns the index in the menu if the item is currently visible, -1 otherwise.
   bool SelectableItem(int idx);

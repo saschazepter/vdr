@@ -4,7 +4,7 @@
  * See the main source file 'vdr.c' for copyright information and
  * how to reach the author.
  *
- * $Id: skinclassic.c 5.7 2026/03/09 15:15:05 kls Exp $
+ * $Id: skinclassic.c 5.8 2026/05/30 12:27:12 kls Exp $
  */
 
 #include "skinclassic.h"
@@ -192,8 +192,8 @@ public:
   virtual void SetEvent(const cEvent *Event) override;
   virtual void SetRecording(const cRecording *Recording) override;
   virtual void SetText(const char *Text, bool FixedFont) override;
-  virtual int GetTextAreaWidth(void) const;
-  virtual const cFont *GetTextAreaFont(bool FixedFont) const;
+  virtual int GetTextAreaWidth(void) const override;
+  virtual const cFont *GetTextAreaFont(bool FixedFont) const override;
   virtual void Flush(void) override;
   };
 
@@ -647,7 +647,7 @@ public:
   cSkinClassicDisplayTracks(const char *Title, int NumTracks, const char * const *Tracks);
   virtual ~cSkinClassicDisplayTracks() override;
   virtual void SetTrack(int Index, const char * const *Tracks) override;
-  virtual void SetAudioChannel(int AudioChannel) {}
+  virtual void SetAudioChannel(int AudioChannel) override {}
   virtual void Flush(void) override;
   };
 
