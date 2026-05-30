@@ -6,7 +6,7 @@
  *
  * LIRC support added by Carsten Koch <Carsten.Koch@icem.de>  2000-06-16.
  *
- * $Id: lirc.c 5.4 2026/05/25 12:33:18 kls Exp $
+ * $Id: lirc.c 5.5 2026/05/30 11:59:32 kls Exp $
  */
 
 #include "lirc.h"
@@ -215,7 +215,7 @@ void cLircDevRemote::Action(void)
         if (ret == sizeof sc) {
            const bool SameKey = sc.keycode == LastKeyCode && !((sc.flags ^ LastFlags) & LIRC_SCANCODE_FLAG_TOGGLE);
 
-           if (sc.flags & LIRC_SCANCODE_FLAG_REPEAT != 0)
+           if ((sc.flags & LIRC_SCANCODE_FLAG_REPEAT) != 0)
               // Before Linux 6.0, this flag is never set for some devices.
               SeenRepeat = true;
 
